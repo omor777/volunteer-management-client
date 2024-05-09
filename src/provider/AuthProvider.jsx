@@ -57,11 +57,8 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       if (currentUser) {
-        // console.log(currentUser, "form auth provider");
         setLoading(false);
         setUser(currentUser);
-
-        // save user email and photo to local storage
       } else {
         setUser(currentUser);
         setLoading(false);

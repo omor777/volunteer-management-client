@@ -1,13 +1,12 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
-import { getDataFromLs, removeDataFromLs } from "../../utils/localStorage";
 
 const Navbar = () => {
-  const { logoutUser } = useAuth();
-  const user = getDataFromLs();
+  const { user, logoutUser } = useAuth();
+  const navigate = useNavigate();
   const handleLogout = async () => {
     await logoutUser();
-    removeDataFromLs();
+    navigate("/login");
   };
 
   return (
@@ -58,8 +57,9 @@ const Navbar = () => {
             ) : (
               <div className="flex items-center gap-5">
                 <img
+                  referrerPolicy="no-referrer"
                   className="bg-red-100 size-11 rounded-full cursor-pointer"
-                  src={user?.photo}
+                  src={user?.photoURL}
                   alt=""
                 />
                 <button

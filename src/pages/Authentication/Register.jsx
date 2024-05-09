@@ -32,6 +32,8 @@ const Register = () => {
         photoURL: photoUrl,
       });
 
+      setUser({ ...user, displayName: name, photoURL: photoUrl });
+
       toast.success("Registration successful!");
     } catch (error) {
       console.error(error);
@@ -39,7 +41,7 @@ const Register = () => {
   };
   return (
     <div className="mt-20">
-      <div className="flex w-full max-w-2xl mx-auto overflow-hidden bg-white rounded-md shadow-md  lg:max-w-4xl ">
+      <div className="flex w-full max-w-2xl mx-auto overflow-hidden bg-white rounded-md shadow-card1  lg:max-w-4xl border border-gray-50">
         <div
           className="hidden bg-cover bg-center lg:block lg:w-1/2"
           style={{
