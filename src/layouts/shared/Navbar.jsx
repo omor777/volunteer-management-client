@@ -1,7 +1,15 @@
 import { Link, NavLink } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
+import { getDataFromLs, removeDataFromLs } from "../../utils/localStorage";
 
 const Navbar = () => {
-  const user = null;
+  const { logoutUser } = useAuth();
+  const user = getDataFromLs();
+  const handleLogout = async () => {
+    await logoutUser();
+    removeDataFromLs();
+  };
+
   return (
     <header className="shadow-xl py-2">
       <nav className="navbar bg-base-100 container">
@@ -42,7 +50,7 @@ const Navbar = () => {
           </div>
           <div className="flex items-center">
             {!user ? (
-              <Link>
+              <Link to={"/login"}>
                 <button className="bg-primary py-2.5 px-6 rounded-md text-white uppercase font-medium hover:bg-primary-dark duration-300">
                   Login
                 </button>
@@ -51,10 +59,14 @@ const Navbar = () => {
               <div className="flex items-center gap-5">
                 <img
                   className="bg-red-100 size-11 rounded-full cursor-pointer"
-                  src=""
+                  src={user?.photo}
                   alt=""
                 />
-                <button className="bg-primary py-2.5 px-6 rounded-md text-white uppercase font-medium hover:bg-primary-dark duration-300">
+                <button
+                  onClick={handleLogout}
+                  type="button"
+                  className="bg-primary py-2.5 px-6 rounded-md text-white uppercase font-medium hover:bg-primary-dark duration-300"
+                >
                   Logout
                 </button>
               </div>
