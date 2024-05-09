@@ -10,8 +10,8 @@ const Navbar = () => {
   };
 
   return (
-    <header className="shadow-xl py-2">
-      <nav className="navbar bg-base-100 container">
+    <header className="shadow-md py-2">
+      <nav className="navbar container">
         <div className="flex-1">
           <a className="btn btn-ghost text-xl">Management</a>
         </div>
@@ -33,7 +33,10 @@ const Navbar = () => {
               className="menu menu-sm dropdown-content mt-3 z-50 p-2 shadow-md bg-base-100  w-64 space-y-1"
             >
               <li>
-                <Link className="capitalize font-medium">
+                <Link
+                  to="/add-volunteer-post"
+                  className="capitalize font-medium"
+                >
                   Add volunteer post
                 </Link>
               </li>
