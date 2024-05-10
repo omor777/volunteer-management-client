@@ -1,9 +1,29 @@
+import { useEffect, useRef, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 
 const Navbar = () => {
   const { user, logoutUser } = useAuth();
   const navigate = useNavigate();
+  const [open, setOpen] = useState(false);
+  const [dropdown, setDropdown] = useState(false);
+  const menuRef = useRef(null);
+  const dropdownRef = useRef(null);
+
+  useEffect(() => {
+    if (open) {
+      menuRef.current.classList.remove("hidden");
+    } else {
+      menuRef.current.classList.add("hidden");
+    }
+  }, [open]);
+  useEffect(() => {
+    if (dropdown) {
+      dropdownRef.current.classList.remove("hidden");
+    } else {
+      dropdownRef.current.classList.add("hidden");
+    }
+  }, [dropdown]);
   const handleLogout = async () => {
     await logoutUser();
     navigate("/login");
@@ -11,69 +31,218 @@ const Navbar = () => {
 
   return (
     <header className="shadow-md py-2">
-      <nav className="navbar container">
-        <div className="flex-1">
-          <a className="btn btn-ghost text-xl">Management</a>
-        </div>
-        <div className="flex-none gap-5">
-          <ul className="flex items-center gap-5">
-            <li>
-              <NavLink to={"/"}>Home</NavLink>
-            </li>
-            <li>
-              <NavLink>Need Volunteer Page</NavLink>
-            </li>
-          </ul>
-          <div className="dropdown dropdown-end">
-            <div tabIndex={0} role="button" className="">
-              <p>My Profile</p>
+      <nav className="bg-white dark:bg-gray-900 fixed w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-600 shadow-md">
+        <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+          <Link
+            to="/"
+            className="flex items-center space-x-3 rtl:space-x-reverse"
+          >
+            <img
+              src="https://flowbite.com/docs/images/logo.svg"
+              className="h-8"
+              alt="Flowbite Logo"
+            />
+            <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
+              CareCrowd
+            </span>
+          </Link>
+          <div className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+            <label className="inline-flex items-center me-5 cursor-pointer">
+              <input
+                type="checkbox"
+                defaultValue=""
+                className="sr-only peer"
+                defaultChecked=""
+              />
+              <div className="relative w-11 h-6 bg-gray-200 rounded-full peer dark:bg-gray-700 peer-focus:ring-4 peer-focus:ring-violet-300 dark:peer-focus:ring-violet-800 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-violet-600" />
+            </label>
+
+            <div className="flex items-center">
+              {!user ? (
+                <Link to={"/login"}>
+                  <button
+                    type="button"
+                    className="text-white bg-primary hover:bg-primary-dark focus:ring-4 focus:outline-none 
+                 focus:ring-primary-light font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-violet-600 dark:hover:bg-bg-primary-dark dark:focus:ring-blue-800 uppercase"
+                  >
+                    Login
+                  </button>
+                </Link>
+              ) : (
+                <div className="flex items-center gap-5">
+                  {user ? (
+                    <img
+                      className="w-10 h-10 rounded-full"
+                      src={user?.photoURL}
+                      alt="Rounded avatar"
+                    />
+                  ) : (
+                    <div className="relative w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
+                      <svg
+                        className="absolute w-12 h-12 text-gray-400 -left-1"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+                          clipRule="evenodd"
+                        ></path>
+                      </svg>
+                    </div>
+                  )}
+
+                  <button
+                    onClick={handleLogout}
+                    type="button"
+                    className="text-white hidden md:block bg-primary hover:bg-primary-dark focus:ring-4 focus:outline-none 
+                 focus:ring-primary-light font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-violet-600 dark:hover:bg-bg-primary-dark dark:focus:ring-blue-800 uppercase"
+                  >
+                    logout
+                  </button>
+                </div>
+              )}
             </div>
-            <ul
-              tabIndex={0}
-              className="menu menu-sm dropdown-content mt-3 z-50 p-2 shadow-md bg-base-100  w-64 space-y-1"
+
+            <button
+              onClick={() => setOpen((pevOpen) => !pevOpen)}
+              type="button"
+              className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+              aria-controls="navbar-sticky"
+              aria-expanded="false"
             >
+              <span className="sr-only">Open main menu</span>
+              <svg
+                className="w-5 h-5"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 17 14"
+              >
+                <path
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M1 1h15M1 7h15M1 13h15"
+                />
+              </svg>
+            </button>
+          </div>
+          <div
+            className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
+            ref={menuRef}
+          >
+            <ul className="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
               <li>
-                <Link
+                <NavLink
+                  to="/"
+                  className={({ isActive }) =>
+                    isActive
+                      ? " bg-primary md:bg-transparent  block py-2 px-3 text-white rounded md:hover:bg-transparent md:text-violet-700 md:p-0 md:dark:hover:text-violet-500  dark:hover:text-white md:dark:hover:bg-transparent dark:text-violet-500 dark:border-gray-700 capitalize"
+                      : " block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-violet-700 md:p-0 md:dark:hover:text-violet-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 capitalize"
+                  }
+                >
+                  Home
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/need-volunteer"
+                  className={({ isActive }) =>
+                    isActive
+                      ? " bg-primary md:bg-transparent  block py-2 px-3  rounded md:hover:bg-transparent text-violet-700 md:p-0 md:dark:hover:text-violet-500  dark:hover:text-white md:dark:hover:bg-transparent dark:text-violet-500 dark:border-gray-700 capitalize"
+                      : " block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-violet-700 md:p-0 md:dark:hover:text-violet-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 capitalize"
+                  }
+                >
+                  Need volunteer page
+                </NavLink>
+              </li>
+              <li className="relative ">
+                <button
+                  onClick={() => setDropdown(!dropdown)}
+                  className="block w-full text-left py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-violet-700 md:p-0 md:dark:hover:text-violet-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                  type="button"
+                >
+                  My Profile{" "}
+                  {/* <svg
+                    className="w-2.5 h-2.5 ms-3"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 10 6"
+                  >
+                    <path
+                      stroke="currentColor"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="m1 1 4 4 4-4"
+                    />
+                  </svg> */}
+                </button>
+                {/* Dropdown menu */}
+                <div
+                  ref={dropdownRef}
+                  className="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 absolute -right-16 top-11"
+                >
+                  <ul
+                    className="py-2 text-sm text-gray-700 dark:text-gray-200"
+                    aria-labelledby="dropdownDefaultButton"
+                  >
+                    <li>
+                      <NavLink
+                        to="/add-volunteer-post"
+                        className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white capitalize"
+                      >
+                        add volunteer post
+                      </NavLink>
+                    </li>
+                    <li>
+                      <NavLink className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white capitalize">
+                        manage my post
+                      </NavLink>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+              <li className="md:hidden">
+                <NavLink
                   to="/add-volunteer-post"
-                  className="capitalize font-medium"
+                  className={({ isActive }) =>
+                    isActive
+                      ? " bg-primary md:bg-transparent  block py-2 px-3  rounded md:hover:bg-transparent text-violet-700 md:p-0 md:dark:hover:text-violet-500  dark:hover:text-white md:dark:hover:bg-transparent dark:text-violet-500 dark:border-gray-700 capitalize"
+                      : " block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-violet-700 md:p-0 md:dark:hover:text-violet-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 capitalize"
+                  }
                 >
                   Add volunteer post
-                </Link>
+                </NavLink>
               </li>
-              <li>
-                <Link className="capitalize font-medium">manage my post</Link>
+              <li className=" md:hidden">
+                <NavLink
+                  to="/manage"
+                  className={({ isActive }) =>
+                    isActive
+                      ? " bg-primary md:bg-transparent  block py-2 px-3  rounded md:hover:bg-transparent text-violet-700 md:p-0 md:dark:hover:text-violet-500  dark:hover:text-white md:dark:hover:bg-transparent dark:text-violet-500 dark:border-gray-700 capitalize"
+                      : " block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-violet-700 md:p-0 md:dark:hover:text-violet-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 capitalize"
+                  }
+                >
+                  manage my post
+                </NavLink>
               </li>
-              <li>
-                <Link className="capitalize font-medium">
-                  my volunteer requested post
-                </Link>
-              </li>
-            </ul>
-          </div>
-          <div className="flex items-center">
-            {!user ? (
-              <Link to={"/login"}>
-                <button className="bg-primary py-2.5 px-6 rounded-md text-white uppercase font-medium hover:bg-primary-dark duration-300">
-                  Login
-                </button>
-              </Link>
-            ) : (
-              <div className="flex items-center gap-5">
-                <img
-                  referrerPolicy="no-referrer"
-                  className="bg-red-100 size-11 rounded-full cursor-pointer"
-                  src={user?.photoURL}
-                  alt=""
-                />
+
+              <li className="md:hidden mt-5">
                 <button
                   onClick={handleLogout}
                   type="button"
-                  className="bg-primary py-2.5 px-6 rounded-md text-white uppercase font-medium hover:bg-primary-dark duration-300"
+                  className="text-white   bg-primary hover:bg-primary-dark focus:ring-4 focus:outline-none 
+                 focus:ring-primary-light font-medium rounded-lg text-sm px-6 py-2 text-center dark:bg-violet-600 dark:hover:bg-bg-primary-dark dark:focus:ring-blue-800 uppercase"
                 >
-                  Logout
+                  logout
                 </button>
-              </div>
-            )}
+              </li>
+            </ul>
           </div>
         </div>
       </nav>
