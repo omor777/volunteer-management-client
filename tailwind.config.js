@@ -26,5 +26,5 @@ export default {
     },
   },
   plugins: [require("flowbite/plugin")],
-  darkMode: "",
+  darkMode: "class",
 };

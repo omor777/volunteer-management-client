@@ -7,41 +7,53 @@ const Navbar = () => {
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const [dropdown, setDropdown] = useState(false);
+  const [theme, setTheme] = useState(false);
   const menuRef = useRef(null);
   const dropdownRef = useRef(null);
 
   useEffect(() => {
+    // for mobile menu
     if (open) {
       menuRef.current.classList.remove("hidden");
     } else {
       menuRef.current.classList.add("hidden");
     }
-  }, [open]);
-  useEffect(() => {
+    // for dropdown menu
     if (dropdown) {
       dropdownRef.current.classList.remove("hidden");
     } else {
       dropdownRef.current.classList.add("hidden");
     }
-  }, [dropdown]);
+    // for dark and light mode
+    if (theme) {
+      document.body.classList.add("dark");
+    } else {
+      document.body.classList.remove("dark");
+    }
+  }, [open, dropdown, theme]);
+
+  const handleTheme = (e) => {
+    setTheme(e.target.checked);
+  };
+
   const handleLogout = async () => {
     await logoutUser();
     navigate("/login");
   };
 
   return (
-    <header className="shadow-md py-2">
+    <header className="shadow-md py-2 ">
       <nav className="bg-white dark:bg-gray-900 fixed w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-600 shadow-md">
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
           <Link
             to="/"
             className="flex items-center space-x-3 rtl:space-x-reverse"
           >
-            <img
+            {/* <img
               src="https://flowbite.com/docs/images/logo.svg"
               className="h-8"
               alt="Flowbite Logo"
-            />
+            /> */}
             <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
               CareCrowd
             </span>
@@ -49,6 +61,7 @@ const Navbar = () => {
           <div className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
             <label className="inline-flex items-center me-5 cursor-pointer">
               <input
+                onChange={handleTheme}
                 type="checkbox"
                 defaultValue=""
                 className="sr-only peer"
@@ -71,7 +84,8 @@ const Navbar = () => {
               ) : (
                 <div className="flex items-center gap-5">
                   {user ? (
-                    <img
+                  <img
+                      referrerPolicy="no-referrer"
                       className="w-10 h-10 rounded-full"
                       src={user?.photoURL}
                       alt="Rounded avatar"
