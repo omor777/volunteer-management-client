@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 import useAxiosCommon from "../../hooks/useAxiosCommon";
 
 //get user info from local storage
@@ -8,7 +9,11 @@ const ManageMyPost = () => {
   const axiosCommon = useAxiosCommon();
   const email = localStorage.getItem("userEmail");
 
-  const { data: volunteers, isPending } = useQuery({
+  const {
+    data: volunteers,
+    isPending,
+    refetch,
+  } = useQuery({
     queryKey: ["my-posted-volunteers"],
     queryFn: async () => {
       try {
@@ -19,6 +24,33 @@ const ManageMyPost = () => {
       }
     },
   });
+
+  const handleDeletePost = async (id) => {
+    try {
+      Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!",
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          await axiosCommon.delete(`/volunteers/${id}`);
+
+          Swal.fire({
+            title: "Your post deleted!",
+            icon: "success",
+          });
+        }
+        // refetch data again for ui update
+        refetch();
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   if (isPending) {
     return (
@@ -128,7 +160,10 @@ const ManageMyPost = () => {
                       </td>
                       <td className="px-4 py-4 capitalize text-sm whitespace-nowrap">
                         <div className="flex items-center gap-x-6">
-                          <button className="text-gray-500 dark:hover:text-violet-500 dark:text-gray-300 hover:text-violet-500 focus:outline-none">
+                          <button
+                            onClick={() => handleDeletePost(_id)}
+                            className="text-gray-500 dark:hover:text-violet-500 dark:text-gray-300 hover:text-violet-500 focus:outline-none"
+                          >
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
                               fill="none"

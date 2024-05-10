@@ -14,11 +14,11 @@ const VolunteerCard = ({ volunteer }) => {
           src={
             "https://i.ibb.co/mCwfJXD/towfiqu-barbhuiya-w8p9c-QDLX7-I-unsplash.jpg"
           }
-          alt=""
+        alt=""
         />
       </figure>
 
-      <div className="p-5 flex flex-col justify-between h-[320px]">
+      <div className="p-5 flex flex-col justify-between h-[330px]">
         <div>
           <h5 className="mb-4 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
             {title}
@@ -42,7 +42,7 @@ const VolunteerCard = ({ volunteer }) => {
           </p>
         </div>
         <div>
-          <Link className="text-white inline-flex items-center bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">
+          <Link className="text-white inline-flex items-center bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center ">
             View Details
             <svg
               className="rtl:rotate-180 w-3.5 h-3.5 ms-2"
