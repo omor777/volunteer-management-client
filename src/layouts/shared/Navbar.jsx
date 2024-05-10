@@ -1,15 +1,20 @@
 import { useEffect, useRef, useState } from "react";
+import { FaMoon } from "react-icons/fa6";
+import { MdWbSunny } from "react-icons/md";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
+import { getThemeFromLs, setThemeToLs } from "../../utils/theme";
 
 const Navbar = () => {
   const { user, logoutUser } = useAuth();
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const [dropdown, setDropdown] = useState(false);
-  const [theme, setTheme] = useState(false);
+  const [theme, setTheme] = useState("light");
   const menuRef = useRef(null);
   const dropdownRef = useRef(null);
+
+  const userEmail = localStorage.getItem("userEmail");
 
   useEffect(() => {
     // for mobile menu
@@ -24,17 +29,34 @@ const Navbar = () => {
     } else {
       dropdownRef.current.classList.add("hidden");
     }
-    // for dark and light mode
-    if (theme) {
-      document.body.classList.add("dark");
+  }, [open, dropdown]);
+
+  const handleTheme = () => {
+    const theme = getThemeFromLs();
+    if (theme === "light") {
+      setThemeToLs("dark");
+      setTheme("dark");
+      document.documentElement.setAttribute("data-theme", "dark");
+    } else if (theme === "dark") {
+      setTheme("light");
+      setThemeToLs("light");
+      document.documentElement.setAttribute("data-theme", "light");
     } else {
+      setThemeToLs("dark");
+      setTheme("dark");
+      document.documentElement.setAttribute("data-theme", "dark");
+    }
+  };
+
+  useEffect(() => {
+    setTheme(getThemeFromLs());
+
+    if (theme === "dark") {
+      document.body.classList.add("dark");
+    } else if (theme === "light") {
       document.body.classList.remove("dark");
     }
-  }, [open, dropdown, theme]);
-
-  const handleTheme = (e) => {
-    setTheme(e.target.checked);
-  };
+  }, [theme]);
 
   const handleLogout = async () => {
     await logoutUser();
@@ -59,19 +81,18 @@ const Navbar = () => {
             </span>
           </Link>
           <div className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
-            <label className="inline-flex items-center me-5 cursor-pointer">
-              <input
-                onChange={handleTheme}
-                type="checkbox"
-                defaultValue=""
-                className="sr-only peer"
-                defaultChecked=""
-              />
-              <div className="relative w-11 h-6 bg-gray-200 rounded-full peer dark:bg-gray-700 peer-focus:ring-4 peer-focus:ring-violet-300 dark:peer-focus:ring-violet-800 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-violet-600" />
-            </label>
+            <button className="mr-4" onClick={handleTheme}>
+              {theme === "light" ? (
+                <FaMoon className="text-3xl text-gray-800 dark:text-gray-300" />
+              ) : theme === "dark" ? (
+                <MdWbSunny className="text-3xl text-gray-800 dark:text-gray-300" />
+              ) : (
+                <FaMoon className="text-3xl text-gray-800 dark:text-gray-300" />
+              )}
+            </button>
 
             <div className="flex items-center">
-              {!user ? (
+              {!userEmail ? (
                 <Link to={"/login"}>
                   <button
                     type="button"
@@ -79,16 +100,21 @@ const Navbar = () => {
                   >
                     Login
                   </button>
-              </Link>
+                </Link>
               ) : (
                 <div className="flex items-center gap-5">
                   {user ? (
-                    <img
-                      referrerPolicy="no-referrer"
-                      className="w-10 h-10 rounded-full"
-                      src={user?.photoURL}
-                      alt="Rounded avatar"
-                    />
+                    <figure className="relative">
+                      <img
+                        referrerPolicy="no-referrer"
+                        className="w-10 h-10 rounded-full peer cursor-pointer ring-2 ring-gray-300 dark:ring-gray-500"
+                        src={user?.photoURL}
+                        alt="Rounded avatar"
+                      />
+                      <span className="peer-hover:visible absolute z-10  inline-block top-10 invisible -right-8 peer  py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-1 tooltip dark:bg-gray-700 w-28 text-center">
+                        {user?.displayName}
+                      </span>
+                    </figure>
                   ) : (
                     <div className="relative w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
                       <svg
