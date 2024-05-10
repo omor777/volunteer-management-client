@@ -214,7 +214,7 @@ const Navbar = () => {
                       </NavLink>
                     </li>
                     <li>
-                      <NavLink className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white capitalize">
+                      <NavLink to='/manage-my-post' className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white capitalize">
                         manage my post
                       </NavLink>
                     </li>
