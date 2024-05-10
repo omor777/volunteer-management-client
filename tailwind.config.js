@@ -1,3 +1,4 @@
+// const colors = require("tailwindcss/colors");
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [
@@ -20,6 +21,12 @@ export default {
         "primary-dark": "rgb(109 40 217)",
         "primary-light": "rgb(196 181 253)",
       },
+      // colors: {
+      //   gray: colors.coolGray,
+      //   blue: colors.red[500],
+      //   red: colors.rose,
+      //   pink: colors.fuchsia,
+      // },
       fontFamily: {
         roboto: ["'Roboto', sans-serif"],
       },

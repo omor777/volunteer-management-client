@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 
 const VolunteerCard = ({ volunteer }) => {
   const { title, thumbnail, category, description, deadline } = volunteer || {};
-  console.log(thumbnail);
-  console.log(volunteer);
+//   console.log(thumbnail);
+//   console.log(volunteer);
   return (
     <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
       <figure>
@@ -23,15 +23,15 @@ const VolunteerCard = ({ volunteer }) => {
           <h5 className="mb-4 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
             {title}
           </h5>
-          <p className="mb-4 flex items-center gap-2">
+          <p className="mb-4 text-gray-800 flex items-center gap-2 dark:text-gray-300">
             <span className="font-medium">Deadline:</span>
 
             {new Date(deadline).toLocaleDateString()}
-            <span className="size-7  bg-violet-200/80 rounded-full flex items-center justify-center">
+            <span className="size-7  bg-violet-200/60 rounded-full flex items-center justify-center">
               <FaCalendarMinus className="text-primary" />
             </span>
           </p>
-          <p className="mb-4">
+          <p className="mb-4 text-gray-800 flex items-center gap-2 dark:text-gray-300">
             <span className="font-medium">Category:</span> {category}
           </p>
 
@@ -42,7 +42,7 @@ const VolunteerCard = ({ volunteer }) => {
           </p>
         </div>
         <div>
-          <Link className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-violet-700 rounded-lg hover:bg-violet-800 focus:ring-4 focus:outline-none focus:ring-violet-300 dark:bg-violet-600 dark:hover:bg-violet-700 dark:focus:ring-violet-800">
+          <Link className="text-white inline-flex items-center bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">
             View Details
             <svg
               className="rtl:rotate-180 w-3.5 h-3.5 ms-2"

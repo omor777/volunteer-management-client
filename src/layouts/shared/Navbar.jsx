@@ -75,16 +75,15 @@ const Navbar = () => {
                 <Link to={"/login"}>
                   <button
                     type="button"
-                    className="text-white bg-primary hover:bg-primary-dark focus:ring-4 focus:outline-none 
-                 focus:ring-primary-light font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-violet-600 dark:hover:bg-bg-primary-dark dark:focus:ring-blue-800 uppercase"
+                    className="text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 uppercase"
                   >
                     Login
                   </button>
-                </Link>
+              </Link>
               ) : (
                 <div className="flex items-center gap-5">
                   {user ? (
-                  <img
+                    <img
                       referrerPolicy="no-referrer"
                       className="w-10 h-10 rounded-full"
                       src={user?.photoURL}
@@ -110,8 +109,7 @@ const Navbar = () => {
                   <button
                     onClick={handleLogout}
                     type="button"
-                    className="text-white hidden md:block bg-primary hover:bg-primary-dark focus:ring-4 focus:outline-none 
-                 focus:ring-primary-light font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-violet-600 dark:hover:bg-bg-primary-dark dark:focus:ring-blue-800 uppercase"
+                    className="text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 uppercase"
                   >
                     logout
                   </button>
@@ -214,7 +212,10 @@ const Navbar = () => {
                       </NavLink>
                     </li>
                     <li>
-                      <NavLink to='/manage-my-post' className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white capitalize">
+                      <NavLink
+                        to="/manage-my-post"
+                        className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white capitalize"
+                      >
                         manage my post
                       </NavLink>
                     </li>

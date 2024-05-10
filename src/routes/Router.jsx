@@ -7,6 +7,7 @@ import BeAVolunteer from "../pages/BeAVolunteer/BeAVolunteer";
 import Home from "../pages/Home/Home";
 import ManageMyPost from "../pages/ManageMyPost/ManageMyPost";
 import NeedVolunteer from "../pages/NeedVolunteer/NeedVolunteer";
+import PostUpdate from "../pages/PostUpdate/PostUpdate";
 import PrivateRoute from "./PrivateRoute";
 
 export const router = createBrowserRouter([
@@ -45,6 +46,12 @@ export const router = createBrowserRouter([
       {
         path: "/manage-my-post",
         element: <ManageMyPost />,
+      },
+      {
+        path: "/post-update/:id",
+        element: <PostUpdate />,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/volunteers/s/${params.id}`),
       },
     ],
   },

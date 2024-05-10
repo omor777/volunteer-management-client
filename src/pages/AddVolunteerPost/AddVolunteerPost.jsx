@@ -13,7 +13,7 @@ const AddVolunteerPost = () => {
   const axiosCommon = useAxiosCommon();
   const { user } = useAuth();
 
-  const handleAddUser = async (e) => {
+  const handleAddPost = async (e) => {
     e.preventDefault();
     const form = e.target;
     const name = form.name.value;
@@ -57,7 +57,7 @@ const AddVolunteerPost = () => {
         <h2 className="text-lg font-semibold text-gray-700 text-center mb-10 mt-3 uppercase dark:text-white">
           add volunteer
         </h2>
-        <form onSubmit={handleAddUser}>
+        <form onSubmit={handleAddPost}>
           <div className="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
             <div>
               <label
