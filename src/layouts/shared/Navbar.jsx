@@ -194,7 +194,7 @@ const Navbar = () => {
                       : " block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-violet-700 md:p-0 md:dark:hover:text-violet-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 capitalize"
                   }
                 >
-                  Need volunteer page
+                  Need volunteer
                 </NavLink>
               </li>
               <li className="relative ">
@@ -229,7 +229,7 @@ const Navbar = () => {
                     className="py-2 text-sm text-gray-700 dark:text-gray-200"
                     aria-labelledby="dropdownDefaultButton"
                   >
-                    <li>
+                    <li onClick={() => setDropdown((prevVal) => !prevVal)}>
                       <NavLink
                         to="/add-volunteer-post"
                         className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white capitalize"
@@ -237,7 +237,7 @@ const Navbar = () => {
                         add volunteer post
                       </NavLink>
                     </li>
-                    <li>
+                    <li onClick={() => setDropdown((prevVal) => !prevVal)}>
                       <NavLink
                         to="/manage-my-post"
                         className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white capitalize"

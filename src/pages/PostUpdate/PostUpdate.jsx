@@ -236,7 +236,7 @@ const PostUpdate = () => {
               type="submit"
               className="text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 font-medium rounded-lg  px-5 py-2.5 text-center  mb-2 w-full uppercase text-sm transition-colors duration-300"
             >
-              update
+              update post
             </button>
           </div>
         </form>
