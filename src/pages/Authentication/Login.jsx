@@ -1,13 +1,16 @@
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 
 const Login = () => {
   const { loginUser, googleLogin, githubLogin } = useAuth();
   const navigate = useNavigate();
+  const { state } = useLocation();
 
   const { register, handleSubmit } = useForm();
+
+  const form = state ? state : "/";
 
   const handleLogin = async (data) => {
     const { email, password } = data;
@@ -15,7 +18,7 @@ const Login = () => {
       const { user } = await loginUser(email, password);
 
       console.log(user);
-      navigate("/");
+      navigate(form);
       toast.success("Login successful!");
     } catch (error) {
       console.error(error);
@@ -25,13 +28,13 @@ const Login = () => {
   const handleGoogleLogin = async () => {
     await googleLogin();
     toast.success("Login successful!");
-    navigate("/");
+    navigate(form);
   };
 
   const handleGithubLogin = async () => {
     await githubLogin();
     toast.success("Login successful!");
-    navigate("/");
+    navigate(form);
   };
   return (
     <div className="mt-20">

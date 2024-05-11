@@ -4,9 +4,9 @@ import Navbar from "./shared/Navbar";
 
 const Root = () => {
   return (
-    <div className=" dark:bg-gray-800 bg-white">
+    <div className="dark:bg-gray-800 bg-white">
       <Navbar />
-      <div className="mt-28 min-h-[calc(100vh-272px)]">
+      <div className=" mt-32 min-h-[calc(100vh-402px)]">
         <Outlet />
       </div>
       <Footer />

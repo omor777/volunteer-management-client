@@ -1,8 +1,9 @@
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 
 const VolunteerPostDetails = () => {
   const data = useLoaderData();
   const {
+    _id,
     title,
     thumbnail,
     description,
@@ -11,7 +12,7 @@ const VolunteerPostDetails = () => {
     location,
     volunteer,
   } = data || {};
-  console.log(data);
+
   return (
     <div className="container">
       <div className="max-w-4xl bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 mx-auto">
@@ -53,12 +54,14 @@ const VolunteerPostDetails = () => {
           </p>
           <hr className="h-px my-6 bg-gray-200 border-0 dark:bg-gray-700" />
           <div className="flex items-center justify-between flex-wrap">
-            <button
-              type="button"
-              className="text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 uppercase"
-            >
-              Be a volunteer
-            </button>
+            <Link to={`/be-a-volunteer/${_id}`}>
+              <button
+                type="button"
+                className="text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 uppercase"
+              >
+                Be a volunteer
+              </button>
+            </Link>
             <p className="dark:text-white text-gray-700 text-sm font-semibold border border-pink-500 px-3 py-1 rounded-full">
               {new Date(deadline).toLocaleDateString()}
             </p>
