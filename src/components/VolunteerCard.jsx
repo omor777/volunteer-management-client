@@ -14,7 +14,7 @@ const VolunteerCard = ({ volunteer }) => {
           src={thumbnail}
           alt=""
         />
-        <span className=" absolute text-white text-xs tracking-wide font-medium  bottom-3 left-3 rounded bg-gradient-to-tr from-purple-500 to-pink-500 px-2 py-1.5 shadow-md">
+        <span className=" absolute text-gray-100 text-xs tracking-wide font-medium  bottom-3 left-3 rounded bg-gradient-to-tr from-purple-500 to-pink-500 px-2 py-1.5 shadow-md">
           {category}
         </span>
       </figure>

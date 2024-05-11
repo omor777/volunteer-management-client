@@ -223,7 +223,7 @@ const Navbar = () => {
                 {/* Dropdown menu */}
                 <div
                   ref={dropdownRef}
-                  className="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 absolute -right-16 top-11"
+                  className="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-52 dark:bg-gray-700 absolute -right-16 top-11"
                 >
                   <ul
                     className="py-2 text-sm text-gray-700 dark:text-gray-200"
@@ -243,6 +243,14 @@ const Navbar = () => {
                         className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white capitalize"
                       >
                         manage my post
+                      </NavLink>
+                    </li>
+                    <li onClick={() => setDropdown((prevVal) => !prevVal)}>
+                      <NavLink
+                        to="/my-volunteer-req-post"
+                        className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white capitalize"
+                      >
+                        My volunteer request post
                       </NavLink>
                     </li>
                   </ul>

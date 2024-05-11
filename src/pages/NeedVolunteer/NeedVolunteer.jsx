@@ -23,8 +23,8 @@ const NeedVolunteer = () => {
   const handleSearch = (e) => {
     e.preventDefault();
     const value = e.target.search.value;
-    console.log(value);
     setSearch(value);
+    e.target.reset();
   };
 
   const handleReset = () => {
