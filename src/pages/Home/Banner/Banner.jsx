@@ -63,7 +63,7 @@ const Banner = () => {
           />
         </SwiperSlide>
         {/* custom next prev button */}
-        <div className=" absolute bottom-8 right-12 flex items-center gap-8 z-[200] md:justify-between md:left-3 md:right-3 md:bottom-1/2 md:-translate-y-1/2">
+        <div className=" absolute bottom-20 left-1/2 -translate-x-1/2 flex items-center gap-8 z-[200] md:-translate-x-0 md:justify-between md:left-3 md:right-3 md:bottom-1/2 md:-translate-y-1/2">
           <div id="custom-prev-button">
             <CustomPrevButton />
           </div>
@@ -94,7 +94,7 @@ const CustomPrevButton = ({ onClick }) => {
 const CustomNextButton = ({ onClick }) => {
   return (
     <button
-      className="custom-next-button size-10 rounded-full flex items-center justify-center bg-gradient-to-tr from-purple-500 to-pink-500"
+      className="custom-next-button size-10 rounded-full flex items-center justify-center bg-gradient-to-tr to-purple-500 from-pink-500"
       onClick={onClick}
     >
       <FaLongArrowAltRight className="text-white text-xl" />

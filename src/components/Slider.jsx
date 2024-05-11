@@ -6,14 +6,13 @@ const Slider = ({ title1st, title2nd, desc, photo }) => {
       <div
         className="w-full bg-center bg-cover h-[32rem]"
         style={{
-          backgroundImage:
-            `url('${photo}')`,
+          backgroundImage: `url('${photo}')`,
         }}
       >
         <div className="flex items-center justify-center w-full h-full bg-gray-900/40">
           <div className="text-center">
             <h1 className="text-white font-extrabold tracking-wide text-[clamp(32px,5vw,60px)] mb-2">
-              <span className="bg-clip-text text-transparent to-80%  bg-gradient-to-r from-purple-600 to-pink-400">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r to-purple-600 from-pink-400">
                 {title1st}
               </span>{" "}
               {title2nd}
