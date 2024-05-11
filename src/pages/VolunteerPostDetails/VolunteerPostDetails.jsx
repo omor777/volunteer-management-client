@@ -25,10 +25,8 @@ const VolunteerPostDetails = () => {
         </figure>
         <div className="p-5">
           <div className="flex items-center justify-between flex-wrap mb-4">
-            <h1 className="text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl  text-center capitalize">
-              <span className="text-transparent bg-clip-text bg-gradient-to-r to-purple-600 from-pink-400">
-                {title}
-              </span>{" "}
+            <h1 className="text-3xl font-extrabold text-gray-800 dark:text-white md:text-5xl  text-center capitalize">
+              <span>{title}</span>
             </h1>
           </div>
 

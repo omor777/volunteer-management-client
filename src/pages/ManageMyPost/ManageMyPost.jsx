@@ -1,12 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
-import useAxiosCommon from "../../hooks/useAxiosCommon";
+import { useAxiosSecure } from "../../hooks/useAxiosSecure";
 
 //get user info from local storage
 
 const ManageMyPost = () => {
-  const axiosCommon = useAxiosCommon();
+  const axiosSecure = useAxiosSecure();
   const email = localStorage.getItem("userEmail");
 
   const {
@@ -17,7 +17,7 @@ const ManageMyPost = () => {
     queryKey: ["my-posted-volunteers"],
     queryFn: async () => {
       try {
-        const { data } = await axiosCommon.get(`/volunteers/${email}`);
+        const { data } = await axiosSecure.get(`/volunteers/${email}`);
         return data;
       } catch (error) {
         console.error(error);

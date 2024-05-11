@@ -2,12 +2,13 @@ import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
+import { useAxiosSecure } from "../../hooks/useAxiosSecure";
 
 const Login = () => {
   const { loginUser, googleLogin, githubLogin } = useAuth();
   const navigate = useNavigate();
   const { state } = useLocation();
-
+  const axiosSecure = useAxiosSecure();
   const { register, handleSubmit } = useForm();
 
   const form = state ? state : "/";
@@ -17,24 +18,45 @@ const Login = () => {
     try {
       const { user } = await loginUser(email, password);
 
-      console.log(user);
       navigate(form);
       toast.success("Login successful!");
+
+      // generate cookie
+      await axiosSecure.post(`/jwt`, {
+        email: user.email,
+      });
     } catch (error) {
       console.error(error);
     }
   };
 
   const handleGoogleLogin = async () => {
-    await googleLogin();
-    toast.success("Login successful!");
-    navigate(form);
+    try {
+      const { user } = await googleLogin();
+      toast.success("Login successful!");
+      navigate(form);
+      // generate cookie
+      await axiosSecure.post(`/jwt`, {
+        email: user.email,
+      });
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const handleGithubLogin = async () => {
-    await githubLogin();
-    toast.success("Login successful!");
-    navigate(form);
+    try {
+      const { user } = await githubLogin();
+      toast.success("Login successful!");
+      navigate(form);
+
+      // generate cookie
+      await axiosSecure.post(`/jwt`, {
+        email: user.email,
+      });
+    } catch (error) {
+      console.error(error);
+    }
   };
   return (
     <div className="mt-20">

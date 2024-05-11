@@ -3,6 +3,7 @@ import { FaMoon } from "react-icons/fa6";
 import { MdWbSunny } from "react-icons/md";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
+import { useAxiosSecure } from "../../hooks/useAxiosSecure";
 import { getThemeFromLs, setThemeToLs } from "../../utils/theme";
 
 const Navbar = () => {
@@ -13,6 +14,7 @@ const Navbar = () => {
   const [theme, setTheme] = useState("light");
   const menuRef = useRef(null);
   const dropdownRef = useRef(null);
+  const axiosSecure = useAxiosSecure();
 
   const userEmail = localStorage.getItem("userEmail");
 
@@ -59,8 +61,14 @@ const Navbar = () => {
   }, [theme]);
 
   const handleLogout = async () => {
-    await logoutUser();
-    navigate("/login");
+    try {
+      await logoutUser();
+      // remove token from cookie
+      await axiosSecure.post("/logout");
+      navigate("/login");
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
