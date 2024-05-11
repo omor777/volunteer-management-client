@@ -6,7 +6,7 @@ const VolunteerCard = ({ volunteer }) => {
   //   console.log(thumbnail);
   //   console.log(volunteer);
   return (
-    <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+    <div className=" bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
       <figure className="relative">
         <img
           referrerPolicy="no-referrer"
