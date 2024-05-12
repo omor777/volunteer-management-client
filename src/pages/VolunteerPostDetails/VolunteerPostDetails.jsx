@@ -25,7 +25,7 @@ const VolunteerPostDetails = () => {
         </figure>
         <div className="p-5">
           <div className="flex items-center justify-between flex-wrap mb-4">
-            <h1 className="text-3xl font-extrabold text-gray-800 dark:text-white md:text-5xl  text-center capitalize">
+            <h1 className="text-[clamp(24px,4vw,40px)] font-extrabold text-gray-800 dark:text-white   text-center capitalize">
               <span>{title}</span>
             </h1>
           </div>

@@ -79,7 +79,7 @@ const MyPost = () => {
     <div>
       {!volunteers.length > 0 ? (
         <section className="bg-white dark:bg-gray-800  flex items-center justify-center ">
-          <div className="flex items-center  px-6 py-12   mx-auto">
+          <div className="flex items-center     mx-auto">
             <div className="flex flex-col items-center max-w-md mx-auto text-center">
               <p className="p-3 text-sm font-medium text-pink-500 rounded-full bg-pink-50 dark:bg-gray-800">
                 <svg
@@ -117,14 +117,7 @@ const MyPost = () => {
         </section>
       ) : (
         <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-          <div className="mb-6">
-            <h1 className=" text-[clamp(26px,4vw,42px)] font-extrabold text-gray-900 dark:text-white   text-center capitalize max-w-3xl mx-auto">
-              <span className="text-transparent bg-clip-text bg-gradient-to-r to-purple-600 from-pink-400">
-                My Need
-              </span>{" "}
-              Volunteer Post
-            </h1>
-          </div>
+          
           <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
             <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
               <tr>

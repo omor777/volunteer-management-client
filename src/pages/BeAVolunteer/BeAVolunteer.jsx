@@ -50,13 +50,21 @@ const BeAVolunteer = () => {
     setStartDate(deadline);
   }, [deadline]);
 
+  console.log(email);
+
   const handleRequestVolunteer = async (e) => {
     e.preventDefault();
     const form = e.target;
     const organizer_name = form.organizer_name.value;
     const organizer_email = form.organizer_email.value;
+
     const volunteer_name = form.volunteer_name.value;
     const volunteer_email = form.volunteer_email.value;
+
+    // validation
+    if (organizer_email === volunteer_email) {
+      return toast.error("Action not permitted!");
+    }
 
     const title = form.title.value;
     const description = form.description.value;

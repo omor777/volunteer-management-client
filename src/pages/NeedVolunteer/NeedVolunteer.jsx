@@ -34,20 +34,19 @@ const NeedVolunteer = () => {
   return (
     <div className="container">
       <div>
-        <h1 className="mb-4 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl text-center">
-          <span className="text-transparent bg-clip-text bg-gradient-to-r to-purple-600 from-pink-500">
-            Better Data
+        <h1 className=" text-[clamp(26px,4vw,42px)] font-extrabold text-gray-900 dark:text-white   text-center capitalize max-w-3xl mx-auto">
+          <span className="text-transparent bg-clip-text bg-gradient-to-r to-purple-600 from-pink-400">
+            Explore
           </span>{" "}
-          Scalable AI
+          Our Volunteer <br /> Opportunities
         </h1>
-
-        <p className="max-w-2xl mx-auto text-center dark:text-gray-400">
-          Discover meaningful ways to make a difference in your community by
-          exploring our Need Volunteer page. Browse through a variety of
-          volunteer opportunities
+        <p className="text-center mt-3 max-w-2xl mx-auto text-gray-800 dark:text-gray-400">
+          Join us in creating meaningful change and making a difference where it
+          matters most. Browse our volunteer opportunities today and take the
+          first step towards creating a brighter tomorrow
         </p>
       </div>
-      <div className="flex items-center  justify-between mt-10 flex-wrap gap-y-6">
+      <div className="flex items-center  justify-between mt-16 flex-wrap gap-y-6">
         <form onSubmit={handleSearch} className="w-full sm:max-w-sm">
           <label
             htmlFor="default-search"
@@ -100,7 +99,7 @@ const NeedVolunteer = () => {
         </button>
       </div>
       {/* all volunteer */}
-      <div className="mt-10">
+      <div className="mt-12">
         {isPending ? (
           <div className="flex justify-center mt-20">
             <svg

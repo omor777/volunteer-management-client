@@ -25,7 +25,7 @@ const RequestPost = () => {
     },
   });
 
-  const handleCancelRequest = async (id) => {
+  const handleCancelRequest = async (id, postId) => {
     try {
       Swal.fire({
         title: "Are you sure?",
@@ -37,7 +37,7 @@ const RequestPost = () => {
         confirmButtonText: "Yes, delete it!",
       }).then(async (result) => {
         if (result.isConfirmed) {
-          await axiosCommon.delete(`/requests/${id}`);
+          await axiosCommon.delete(`/requests/${id}?postId=${postId}`);
 
           Swal.fire({
             title: "Request cancel!",
@@ -79,7 +79,7 @@ const RequestPost = () => {
     <div>
       {!volunteers.length > 0 ? (
         <section className="bg-white dark:bg-gray-800  flex items-center justify-center">
-          <div className="flex items-center  px-6 py-12   mx-auto">
+          <div className="flex items-center  mx-auto">
             <div className="flex flex-col items-center max-w-md mx-auto text-center">
               <p className="p-3 text-sm font-medium text-pink-500 rounded-full bg-pink-50 dark:bg-gray-800">
                 <svg
@@ -117,14 +117,6 @@ const RequestPost = () => {
         </section>
       ) : (
         <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-          <div className="mb-6">
-            <h1 className=" text-[clamp(26px,4vw,42px)] font-extrabold text-gray-900 dark:text-white   text-center capitalize max-w-3xl mx-auto">
-              <span className="text-transparent bg-clip-text bg-gradient-to-r to-purple-600 from-pink-400">
-                My Volunteer
-              </span>{" "}
-              Request Post
-            </h1>
-          </div>
           <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
             <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
               <tr>
@@ -150,8 +142,14 @@ const RequestPost = () => {
             </thead>
             <tbody>
               {volunteers?.map((volunteer) => {
-                const { _id, volunteer_info, title, category, deadline } =
-                  volunteer;
+                const {
+                  _id,
+                  volunteer_info,
+                  title,
+                  category,
+                  deadline,
+                  postId,
+                } = volunteer;
 
                 return (
                   <tr
@@ -171,7 +169,7 @@ const RequestPost = () => {
                     </td>
                     <td className="px-4 py-4 capitalize text-sm whitespace-nowrap">
                       <button
-                        onClick={() => handleCancelRequest(_id)}
+                        onClick={() => handleCancelRequest(_id, postId)}
                         type="button"
                         className="relative inline-flex items-center justify-center p-0.5  overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-500 to-pink-500 group-hover:from-purple-500 group-hover:to-pink-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800"
                       >
