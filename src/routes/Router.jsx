@@ -38,7 +38,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "/be-a-volunteer/:id",
-        element: <BeAVolunteer />,
+        element: (
+          <PrivateRoute>
+            <BeAVolunteer />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/volunteer-post-details/:id",

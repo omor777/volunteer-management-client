@@ -1,11 +1,15 @@
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
+import { BsTable } from "react-icons/bs";
+import { TfiLayoutGrid3Alt } from "react-icons/tfi";
 import VolunteerCard from "../../components/VolunteerCard";
 import useAxiosCommon from "../../hooks/useAxiosCommon";
+import TableLayout from "./TableLayout";
 
 const NeedVolunteer = () => {
   const axiosCommon = useAxiosCommon();
   const [search, setSearch] = useState("");
+  const [layout, setLayout] = useState(false);
   const { data: volunteers, isPending } = useQuery({
     queryKey: ["volunteers", search],
     queryFn: async () => {
@@ -88,14 +92,12 @@ const NeedVolunteer = () => {
           </div>
         </form>
 
-        <button
-          type="button"
-          onClick={handleReset}
-          className="relative inline-flex items-center justify-center p-0.5  overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-500 to-pink-500 group-hover:from-purple-500 group-hover:to-pink-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 mx-auto sm:mx-0"
-        >
-          <span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0 uppercase">
-            Reset
-          </span>
+        <button onClick={() => setLayout((prevLayout) => !prevLayout)}>
+          {layout ? (
+            <BsTable className="text-2xl dark:text-gray-300" />
+          ) : (
+            <TfiLayoutGrid3Alt className="text-2xl dark:text-gray-300" />
+          )}
         </button>
       </div>
       {/* all volunteer */}
@@ -121,13 +123,19 @@ const NeedVolunteer = () => {
             <span className="sr-only">Loading...</span>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 ">
-            {volunteers?.map((volunteer) => {
-              return (
-                <VolunteerCard key={volunteer._id} volunteer={volunteer} />
-              );
-            })}
-          </div>
+          <>
+            {layout ? (
+              <TableLayout volunteers={volunteers} />
+            ) : (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 ">
+                {volunteers?.map((volunteer) => {
+                  return (
+                    <VolunteerCard key={volunteer._id} volunteer={volunteer} />
+                  );
+                })}
+              </div>
+            )}
+          </>
         )}
       </div>
     </div>

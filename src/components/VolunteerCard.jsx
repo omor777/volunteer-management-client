@@ -11,9 +11,9 @@ const VolunteerCard = ({ volunteer }) => {
       <figure className="relative">
         <img
           referrerPolicy="no-referrer"
-          className="rounded-t-lg"
+          className="rounded-t-lg h-[260px] text-gray-400"
           src={thumbnail}
-          alt=""
+          alt="Not found!"
         />
       </figure>
 
