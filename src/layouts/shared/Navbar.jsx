@@ -253,14 +253,6 @@ const Navbar = () => {
                         manage my post
                       </NavLink>
                     </li>
-                    <li onClick={() => setDropdown((prevVal) => !prevVal)}>
-                      <NavLink
-                        to="/my-volunteer-req-post"
-                        className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white capitalize"
-                      >
-                        My volunteer request post
-                      </NavLink>
-                    </li>
                   </ul>
                 </div>
               </li>

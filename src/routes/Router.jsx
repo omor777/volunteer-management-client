@@ -5,7 +5,6 @@ import Login from "../pages/Authentication/Login";
 import Register from "../pages/Authentication/Register";
 import BeAVolunteer from "../pages/BeAVolunteer/BeAVolunteer";
 import Home from "../pages/Home/Home";
-import MyVolunteerReqPost from "../pages/Home/MyVolunteerReqPost/MyVolunteerReqPost";
 import ManageMyPost from "../pages/ManageMyPost/ManageMyPost";
 import NeedVolunteer from "../pages/NeedVolunteer/NeedVolunteer";
 import PostUpdate from "../pages/PostUpdate/PostUpdate";
@@ -60,14 +59,6 @@ export const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <ManageMyPost />
-          </PrivateRoute>
-        ),
-      },
-      {
-        path: "/my-volunteer-req-post",
-        element: (
-          <PrivateRoute>
-            <MyVolunteerReqPost />
           </PrivateRoute>
         ),
       },
