@@ -1,7 +1,22 @@
-import { Link, useLoaderData } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+import { Link, useParams } from "react-router-dom";
+import useAxiosCommon from "../../hooks/useAxiosCommon";
 
 const VolunteerPostDetails = () => {
-  const data = useLoaderData();
+  const axiosCommon = useAxiosCommon();
+
+  const { id } = useParams();
+  const { data } = useQuery({
+    queryKey: ["volunteers-details"],
+    queryFn: async () => {
+      try {
+        const { data } = await axiosCommon.get(`volunteers/s/${id}`);
+        return data;
+      } catch (error) {
+        console.error(error);
+      }
+    },
+  });
   const {
     _id,
     title,

@@ -1,5 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { BsTable } from "react-icons/bs";
 import { TfiLayoutGrid3Alt } from "react-icons/tfi";
 import VolunteerCard from "../../components/VolunteerCard";
@@ -10,19 +9,48 @@ const NeedVolunteer = () => {
   const axiosCommon = useAxiosCommon();
   const [search, setSearch] = useState("");
   const [layout, setLayout] = useState(false);
-  const { data: volunteers, isPending } = useQuery({
-    queryKey: ["volunteers", search],
-    queryFn: async () => {
+  const [itemsPerPage, setItemsPerPage] = useState(2);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [volunteers, setVolunteers] = useState([]);
+  const [isPending, setIsPending] = useState(true);
+  const [count, setCount] = useState(null);
+  // const { data: volunteers, isPending } = useQuery({
+  //   queryKey: ["volunteers", search, currentPage],
+  //   queryFn: async () => {},
+  // });
+
+  useEffect(() => {
+    const getData = async () => {
       try {
         const { data } = await axiosCommon.get(
-          `/all-volunteers?search=${search}`
+          `/all-volunteers?page=${currentPage}&size=${itemsPerPage}&search=${search}`
         );
-        return data;
+        setIsPending(false);
+        setVolunteers(data);
       } catch (error) {
         console.error(error);
       }
-    },
-  });
+    };
+    getData();
+  }, [search, itemsPerPage, currentPage, axiosCommon]);
+
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const { data } = await axiosCommon.get(
+          `/volunteers-count?search=${search}`
+        );
+        setCount(data.count);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    getData();
+  }, [axiosCommon, search]);
+
+  const totalPages = Math.ceil(count / itemsPerPage);
+
+  const pages = [...Array(totalPages).keys()].map((page) => page + 1);
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -33,6 +61,22 @@ const NeedVolunteer = () => {
 
   const handleReset = () => {
     setSearch("");
+  };
+
+  const handlePagination = (p) => {
+    setCurrentPage(p);
+  };
+
+  const handlePrevButton = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
+  const handleNextButton = () => {
+    if (currentPage < pages.length ) {
+      setCurrentPage(currentPage + 1);
+    }
   };
 
   return (
@@ -127,12 +171,58 @@ const NeedVolunteer = () => {
             {layout ? (
               <TableLayout volunteers={volunteers} />
             ) : (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 ">
-                {volunteers?.map((volunteer) => {
-                  return (
-                    <VolunteerCard key={volunteer._id} volunteer={volunteer} />
-                  );
-                })}
+              <div>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 ">
+                  {volunteers?.map((volunteer) => {
+                    return (
+                      <VolunteerCard
+                        key={volunteer._id}
+                        volunteer={volunteer}
+                      />
+                    );
+                  })}
+                </div>
+                <nav className=" flex justify-center mt-14">
+                  <ul className="inline-flex -space-x-px text-base h-10">
+                    <li>
+                      <button
+                        onClick={handlePrevButton}
+                        className="flex items-center justify-center px-4 h-10 ms-0 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                      >
+                        Previous
+                      </button>
+                    </li>
+
+                    {pages?.map((page) => {
+                      return (
+                        <li key={page}>
+                          <button
+                            onClick={() => handlePagination(page)}
+                            type="button"
+                            className={`flex items-center 
+                            ${
+                              currentPage === page
+                                ? "bg-gradient-to-tr from-pink-500 to-purple-600 text-white dark:text-white hover:text-white"
+                                : ""
+                            } justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100  dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white`}
+                          >
+                            {page}
+                          </button>
+                        </li>
+                      );
+                    })}
+
+                    <li>
+                      <button
+                        onClick={handleNextButton}
+                        type="button"
+                        className="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                      >
+                        Next
+                      </button>
+                    </li>
+                  </ul>
+                </nav>
               </div>
             )}
           </>

@@ -1,15 +1,28 @@
+import { useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import toast from "react-hot-toast";
-import { useLoaderData, useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import useAxiosCommon from "../../hooks/useAxiosCommon";
 import "./style.css";
 
 const PostUpdate = () => {
   const [startDate, setStartDate] = useState(new Date());
-  const data = useLoaderData();
+  const { id } = useParams();
   const axiosCommon = useAxiosCommon();
+  const { data } = useQuery({
+    queryKey: ["post-update"],
+    queryFn: async () => {
+      try {
+        const { data } = await axiosCommon.get(`volunteers/s/${id}`);
+        return data;
+      } catch (error) {
+        console.error(error);
+      }
+    },
+  });
+
   const navigate = useNavigate();
 
   const {

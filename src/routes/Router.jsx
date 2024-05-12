@@ -51,12 +51,12 @@ export const router = createBrowserRouter([
             <VolunteerPostDetails />
           </PrivateRoute>
         ),
-        loader: ({ params }) =>
-          fetch(`http://localhost:5000/volunteers/s/${params.id}`),
+      
       },
       {
         path: "/need-volunteer",
         element: <NeedVolunteer />,
+        
       },
       {
         path: "/manage-my-post",
@@ -68,10 +68,13 @@ export const router = createBrowserRouter([
       },
       {
         path: "/post-update/:id",
-        element: <PostUpdate />,
-        loader: ({ params }) =>
-          fetch(`http://localhost:5000/volunteers/s/${params.id}`),
-      },
+        element: (
+          <PrivateRoute>
+            <PostUpdate />
+          </PrivateRoute>
+        ),
+       
+    },
     ],
   },
 ]);
