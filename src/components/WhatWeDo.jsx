@@ -11,7 +11,7 @@ const WhatWeDo = () => {
           </span>{" "}
           and better with our team
         </h1>
-        <p className="text-center mt-4 max-w-2xl mx-auto text-gray-800 dark:text-gray-400">
+        <p className="text-center mt-3 max-w-2xl mx-auto text-gray-800 dark:text-gray-400">
           We stand for using natural energy resources, which are solar and wind
           energy. It’ really ensures all people’s needs in electricity. It’s
           very affordable and easy to use, so every person can make its impact
