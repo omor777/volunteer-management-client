@@ -4,14 +4,20 @@ const OurExperience = () => {
   return (
     <div>
       <div>
-        <h1 className="mb-8 text-[clamp(26px,4vw,42px)] font-extrabold text-gray-900 dark:text-white   text-center capitalize">
+        <h1 className="text-[clamp(26px,4vw,42px)] font-extrabold text-gray-900 dark:text-white   text-center capitalize">
           <span className="text-transparent bg-clip-text bg-gradient-to-r to-purple-600 from-pink-400">
             Check our
           </span>{" "}
           spectrum of <br /> experiences
         </h1>
+        <p className="text-center mt-3 max-w-2xl mx-auto text-gray-800 dark:text-gray-400">
+          Immerse yourself in a vibrant array of volunteer experiences tailored
+          to match your interests, skills, and passions. From community outreach
+          to environmental conservation, our spectrum of opportunities offers
+          something for everyone.
+        </p>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-10">
         <ExperienceCard
           title={"Volunteering in Hospitals"}
           desc={
