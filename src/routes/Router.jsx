@@ -4,6 +4,7 @@ import AddVolunteerPost from "../pages/AddVolunteerPost/AddVolunteerPost";
 import Login from "../pages/Authentication/Login";
 import Register from "../pages/Authentication/Register";
 import BeAVolunteer from "../pages/BeAVolunteer/BeAVolunteer";
+import ErrorPage from "../pages/Error/ErrorPage";
 import Home from "../pages/Home/Home";
 import ManageMyPost from "../pages/ManageMyPost/ManageMyPost";
 import NeedVolunteer from "../pages/NeedVolunteer/NeedVolunteer";
@@ -15,6 +16,7 @@ export const router = createBrowserRouter([
   {
     path: "/",
     element: <Root />,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: "/",
@@ -51,12 +53,10 @@ export const router = createBrowserRouter([
             <VolunteerPostDetails />
           </PrivateRoute>
         ),
-      
       },
       {
         path: "/need-volunteer",
         element: <NeedVolunteer />,
-        
       },
       {
         path: "/manage-my-post",
@@ -73,8 +73,7 @@ export const router = createBrowserRouter([
             <PostUpdate />
           </PrivateRoute>
         ),
-       
-    },
+      },
     ],
   },
 ]);
