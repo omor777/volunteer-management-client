@@ -181,31 +181,31 @@ const Navbar = () => {
             ref={menuRef}
           >
             <ul className="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-              <li>
+              <li onClick={() => setOpen(!open)}>
                 <NavLink
                   to="/"
                   className={({ isActive }) =>
                     isActive
-                      ? " bg-primary md:bg-transparent  block py-2 px-3 text-white rounded md:hover:bg-transparent md:text-violet-700 md:p-0 md:dark:hover:text-violet-500  dark:hover:text-white md:dark:hover:bg-transparent dark:text-violet-500 dark:border-gray-700 capitalize"
-                      : " block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-violet-700 md:p-0 md:dark:hover:text-violet-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 capitalize"
+                      ? " bg-gradient-to-r from-pink-500 to-purple-500 md:bg-transparent md:from-transparent md:to-transparent  block py-2 px-3 text-white rounded md:hover:bg-transparent md:text-pink-600 md:p-0 md:dark:text-pink-500    md:dark:hover:bg-transparent dark:text-white dark:border-gray-700 capitalize "
+                      : " block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-pink-600 md:p-0 md:dark:hover:text-pink-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 capitalize"
                   }
                 >
                   Home
                 </NavLink>
               </li>
-              <li>
+              <li onClick={() => setOpen(!open)}>
                 <NavLink
                   to="/need-volunteer"
                   className={({ isActive }) =>
                     isActive
-                      ? " bg-primary md:bg-transparent  block py-2 px-3  rounded md:hover:bg-transparent text-violet-700 md:p-0 md:dark:hover:text-violet-500  dark:hover:text-white md:dark:hover:bg-transparent dark:text-violet-500 dark:border-gray-700 capitalize"
-                      : " block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-violet-700 md:p-0 md:dark:hover:text-violet-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 capitalize"
+                      ? " bg-gradient-to-r from-pink-500 to-purple-500 md:bg-transparent md:from-transparent md:to-transparent  block py-2 px-3 text-white rounded md:hover:bg-transparent md:text-pink-600 md:p-0 md:dark:text-pink-500    md:dark:hover:bg-transparent dark:text-white dark:border-gray-700 capitalize "
+                      : " block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-pink-600 md:p-0 md:dark:hover:text-pink-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 capitalize"
                   }
                 >
                   Need volunteer
                 </NavLink>
               </li>
-              <li className="relative ">
+              <li className="relative hidden md:block">
                 <button
                   onClick={() => setDropdown(!dropdown)}
                   className="block w-full text-left py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-violet-700 md:p-0 md:dark:hover:text-violet-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
@@ -256,25 +256,25 @@ const Navbar = () => {
                   </ul>
                 </div>
               </li>
-              <li className="md:hidden">
+              <li onClick={() => setOpen(!open)} className="md:hidden">
                 <NavLink
                   to="/add-volunteer-post"
                   className={({ isActive }) =>
                     isActive
-                      ? " bg-primary md:bg-transparent  block py-2 px-3  rounded md:hover:bg-transparent text-violet-700 md:p-0 md:dark:hover:text-violet-500  dark:hover:text-white md:dark:hover:bg-transparent dark:text-violet-500 dark:border-gray-700 capitalize"
-                      : " block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-violet-700 md:p-0 md:dark:hover:text-violet-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 capitalize"
+                      ? " bg-gradient-to-r from-pink-500 to-purple-500 md:bg-transparent md:from-transparent md:to-transparent  block py-2 px-3 text-white rounded md:hover:bg-transparent md:text-pink-600 md:p-0 md:dark:text-pink-500    md:dark:hover:bg-transparent dark:text-white dark:border-gray-700 capitalize "
+                      : " block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-pink-600 md:p-0 md:dark:hover:text-pink-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 capitalize"
                   }
                 >
                   Add volunteer post
                 </NavLink>
               </li>
-              <li className=" md:hidden">
+              <li onClick={() => setOpen(!open)} className=" md:hidden">
                 <NavLink
-                  to="/manage"
+                  to="/manage-my-post"
                   className={({ isActive }) =>
                     isActive
-                      ? " bg-primary md:bg-transparent  block py-2 px-3  rounded md:hover:bg-transparent text-violet-700 md:p-0 md:dark:hover:text-violet-500  dark:hover:text-white md:dark:hover:bg-transparent dark:text-violet-500 dark:border-gray-700 capitalize"
-                      : " block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-violet-700 md:p-0 md:dark:hover:text-violet-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 capitalize"
+                      ? " bg-gradient-to-r from-pink-500 to-purple-500 md:bg-transparent md:from-transparent md:to-transparent  block py-2 px-3 text-white rounded md:hover:bg-transparent md:text-pink-600 md:p-0 md:dark:text-pink-500    md:dark:hover:bg-transparent dark:text-white dark:border-gray-700 capitalize "
+                      : " block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-pink-600 md:p-0 md:dark:hover:text-pink-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 capitalize"
                   }
                 >
                   manage my post
@@ -285,10 +285,11 @@ const Navbar = () => {
                 <button
                   onClick={handleLogout}
                   type="button"
-                  className="text-white   bg-primary hover:bg-primary-dark focus:ring-4 focus:outline-none 
-                 focus:ring-primary-light font-medium rounded-lg text-sm px-6 py-2 text-center dark:bg-violet-600 dark:hover:bg-bg-primary-dark dark:focus:ring-blue-800 uppercase"
+                  className="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-500 to-pink-500 group-hover:from-purple-500 group-hover:to-pink-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800"
                 >
-                  logout
+                  <span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0 uppercase">
+                    Logout
+                  </span>
                 </button>
               </li>
             </ul>

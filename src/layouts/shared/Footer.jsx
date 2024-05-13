@@ -2,7 +2,7 @@ import { FiPhone } from "react-icons/fi";
 import { MdOutlineEmail } from "react-icons/md";
 const Footer = () => {
   return (
-    <footer className="bg-slate-200 dark:bg-gray-900 mt-16">
+    <footer className="bg-gray-800 dark:bg-gray-900 mt-16">
       <div className="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
         <div className="md:grid md:grid-cols-6 ">
           <div className="mb-6 md:mb-0 col-span-2">
@@ -10,14 +10,14 @@ const Footer = () => {
               <div className="flex items-center">
                 <img
                   src="https://i.ibb.co/b3Zt8cZ/1j-oj-FVGOMk-X9-W-re-Be4h-Gf637-TVt0-QNx1m-Zw-WJp-Zy-YVr-Fthk-SEkj-Vv8-Qtak-RU7-FEd3-UFIf8crz-Xoi-EM.png"
-                  className="h-10 mr-3 w-10 rounded-full"
+                  className="h-8 mr-3 w-8 rounded-full"
                   alt="FlowBite Logo"
                 />
-                <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
+                <span className="self-center text-2xl font-semibold whitespace-nowrap text-white">
                   CareCrowd
                 </span>
               </div>
-              <p className="dark:text-gray-400 mt-4 max-w-[280px]">
+              <p className="text-gray-300 dark:text-gray-400 mt-4 max-w-[280px]">
                 Discover volunteer opportunities near you and connect with a
                 community of changemakers.{" "}
               </p>
@@ -25,10 +25,10 @@ const Footer = () => {
           </div>
           <div className="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3 col-span-4">
             <div>
-              <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">
+              <h2 className="mb-6 text-sm font-semibold  uppercase text-white">
                 Contact Us
               </h2>
-              <ul className="text-gray-500 dark:text-gray-400 font-medium">
+              <ul className="text-gray-300 dark:text-gray-400 font-medium">
                 <li className="mb-4 flex items-center gap-1 flex-wrap">
                   <MdOutlineEmail className="text-xl" />
                   <span className="hover:underline cursor-pointer">
@@ -44,10 +44,10 @@ const Footer = () => {
               </ul>
             </div>
             <div>
-              <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">
+              <h2 className="mb-6 text-sm font-semibold  uppercase text-white">
                 Support Us
               </h2>
-              <ul className="text-gray-500 dark:text-gray-400 font-medium">
+              <ul className="text-gray-300 dark:text-gray-400 font-medium">
                 <li className="mb-4">
                   <span>Help us make a difference</span>
                 </li>
@@ -62,10 +62,10 @@ const Footer = () => {
               </ul>
             </div>
             <div>
-              <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">
+              <h2 className="mb-6 text-sm font-semibold  uppercase text-white">
                 Quick Links
               </h2>
-              <ul className="text-gray-500 dark:text-gray-400 font-medium">
+              <ul className="text-gray-300 dark:text-gray-400 font-medium">
                 <li className="mb-4">
                   <span className="hover:underline cursor-pointer">
                     Volunteer Opportunities
@@ -87,7 +87,7 @@ const Footer = () => {
         <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
 
         <div className="sm:flex sm:items-center sm:justify-between">
-          <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">
+          <span className="text-sm text-gray-300 sm:text-center dark:text-gray-400">
             © 2024{" "}
             <a href="https://flowbite.com/" className="hover:underline">
               CareCrowd
@@ -97,7 +97,7 @@ const Footer = () => {
           <div className="flex mt-4 sm:justify-center sm:mt-0">
             <a
               href="#"
-              className="text-gray-500 hover:text-gray-900 dark:hover:text-white"
+              className="text-gray-300 hover:text-gray-400 dark:hover:text-white"
             >
               <svg
                 className="w-4 h-4"
@@ -116,7 +116,7 @@ const Footer = () => {
             </a>
             <a
               href="#"
-              className="text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5"
+              className="text-gray-300 hover:text-gray-400 dark:hover:text-white ms-5"
             >
               <svg
                 className="w-4 h-4"
@@ -131,7 +131,7 @@ const Footer = () => {
             </a>
             <a
               href="#"
-              className="text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5"
+              className="text-gray-300 hover:text-gray-400 dark:hover:text-white ms-5"
             >
               <svg
                 className="w-4 h-4"
@@ -150,7 +150,7 @@ const Footer = () => {
             </a>
             <a
               href="#"
-              className="text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5"
+              className="text-gray-300 hover:text-gray-400 dark:hover:text-white ms-5"
             >
               <svg
                 className="w-4 h-4"
@@ -169,7 +169,7 @@ const Footer = () => {
             </a>
             <a
               href="#"
-              className="text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5"
+              className="text-gray-300 hover:text-gray-400 dark:hover:text-white ms-5"
             >
               <svg
                 className="w-4 h-4"

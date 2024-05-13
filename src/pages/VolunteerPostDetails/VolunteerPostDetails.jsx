@@ -27,6 +27,8 @@ const VolunteerPostDetails = () => {
     category,
     location,
     volunteer,
+    name,
+    email,
   } = data || {};
 
   return (
@@ -58,16 +60,30 @@ const VolunteerPostDetails = () => {
             </p>
             <p className="dark:text-gray-300 text-gray-700 capitalize flex items-center gap-2">
               <span className="text-lg font-medium ">volunteer needed:</span>{" "}
-              <span className="bg-gradient-to-br from-purple-500 to-pink-600 text-sm size-7 rounded-full grid place-items-center font-bold text-white">
+              <span className="bg-pink-100/60 text-pink-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-pink-900 dark:text-pink-300">
                 {volunteer}
               </span>
             </p>
           </div>
+
           <p className="font-normal text-gray-700 dark:text-gray-400 mt-4">
             <span className="font-medium dark:text-gray-300">Description:</span>{" "}
             {description}
           </p>
+          <hr className="h-px my-5 bg-gray-200 border-0 dark:bg-gray-700" />
+          <div className="mt-4">
+            <h4 className="text-gray-700 dark:text-gray-300 text-lg capitalize font-medium">
+              Organizer Info
+            </h4>
+            <p className="dark:text-gray-300 text-gray-700 capitalize text-sm mt-2">
+              <span className=" font-medium ">Name:</span> {name}
+            </p>
+            <p className="dark:text-gray-300 text-gray-700 capitalize text-sm mt-2">
+              <span className=" font-medium ">Name:</span> {email}
+            </p>
+          </div>
           <hr className="h-px my-6 bg-gray-200 border-0 dark:bg-gray-700" />
+
           <div className="flex items-center justify-between flex-wrap">
             <Link to={`/be-a-volunteer/${_id}`}>
               <button
