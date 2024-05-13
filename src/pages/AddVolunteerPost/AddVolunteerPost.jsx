@@ -7,6 +7,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import toast from "react-hot-toast";
 import useAxiosCommon from "../../hooks/useAxiosCommon";
 import "./style.css";
+import Title from "../../components/Title";
 
 const AddVolunteerPost = () => {
   const [startDate, setStartDate] = useState(new Date());
@@ -53,6 +54,7 @@ const AddVolunteerPost = () => {
   };
   return (
     <section className="mt-32 container ">
+      <Title title={'Add Volunteer Post'}/>
       <div className=" p-6 mx-auto bg-white rounded-md shadow-md dark:bg-gray-800 max-w-5xl border border-neutral-100">
         <h2 className="text-lg font-semibold text-gray-700 text-center mb-10 mt-3 uppercase dark:text-white">
           add volunteer

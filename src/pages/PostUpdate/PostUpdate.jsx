@@ -6,6 +6,7 @@ import toast from "react-hot-toast";
 import { useNavigate, useParams } from "react-router-dom";
 import useAxiosCommon from "../../hooks/useAxiosCommon";
 import "./style.css";
+import Title from "../../components/Title";
 
 const PostUpdate = () => {
   const [startDate, setStartDate] = useState(new Date());
@@ -87,6 +88,7 @@ const PostUpdate = () => {
 
   return (
     <section className="bg-white dark:bg-gray-800 px-4 lg:px-0 ">
+      <Title title={'Update Volunteer Post'}/>
       <div className="max-w-4xl px-4 pt-8 pb-4 md:p-8 mx-auto  border border-slate-300 rounded-md">
         <h1 className="mb-8 text-[clamp(30px,5vw,48px)] font-extrabold text-gray-900 dark:text-white   text-center capitalize">
           <span className="text-transparent bg-clip-text bg-gradient-to-r to-purple-600 from-pink-400">

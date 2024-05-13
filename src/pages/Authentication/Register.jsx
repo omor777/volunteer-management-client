@@ -4,6 +4,7 @@ import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import { setDataToLs } from "../../utils/localStorage";
+import Title from "../../components/Title";
 
 const Register = () => {
   const { user, setUser, createUser } = useAuth();
@@ -41,6 +42,7 @@ const Register = () => {
   };
   return (
     <div className="mt-20">
+      <Title title={'Register'}/>
       <div className="flex w-full max-w-2xl mx-auto overflow-hidden bg-white rounded-md shadow-md  lg:max-w-4xl border border-gray-50">
         <div
           className="hidden bg-cover bg-center lg:block lg:w-1/2"

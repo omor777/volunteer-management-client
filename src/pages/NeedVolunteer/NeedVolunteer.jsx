@@ -4,6 +4,7 @@ import { TfiLayoutGrid3Alt } from "react-icons/tfi";
 import VolunteerCard from "../../components/VolunteerCard";
 import useAxiosCommon from "../../hooks/useAxiosCommon";
 import TableLayout from "./TableLayout";
+import Title from "../../components/Title";
 
 const NeedVolunteer = () => {
   const axiosCommon = useAxiosCommon();
@@ -81,6 +82,7 @@ const NeedVolunteer = () => {
 
   return (
     <div className="container">
+      <Title title={'Need Volunteer Post'}/>
       <div>
         <h1 className=" text-[clamp(26px,4vw,42px)] font-extrabold text-gray-900 dark:text-white   text-center capitalize max-w-3xl mx-auto">
           <span className="text-transparent bg-clip-text bg-gradient-to-r to-purple-600 from-pink-400">

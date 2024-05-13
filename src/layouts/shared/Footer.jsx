@@ -9,8 +9,8 @@ const Footer = () => {
             <div className="">
               <div className="flex items-center">
                 <img
-                  src="https://flowbite.com/docs/images/logo.svg"
-                  className="h-8 me-3"
+                  src="https://i.ibb.co/b3Zt8cZ/1j-oj-FVGOMk-X9-W-re-Be4h-Gf637-TVt0-QNx1m-Zw-WJp-Zy-YVr-Fthk-SEkj-Vv8-Qtak-RU7-FEd3-UFIf8crz-Xoi-EM.png"
+                  className="h-10 mr-3 w-10 rounded-full"
                   alt="FlowBite Logo"
                 />
                 <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">

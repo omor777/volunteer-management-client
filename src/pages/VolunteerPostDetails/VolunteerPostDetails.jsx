@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { Link, useParams } from "react-router-dom";
+import Title from "../../components/Title";
 import useAxiosCommon from "../../hooks/useAxiosCommon";
 
 const VolunteerPostDetails = () => {
@@ -30,6 +31,7 @@ const VolunteerPostDetails = () => {
 
   return (
     <div className="container">
+      <Title title={"Volunteer Post Details"} />
       <div className="max-w-4xl bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 mx-auto">
         <figure>
           <img

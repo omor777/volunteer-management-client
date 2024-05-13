@@ -1,4 +1,5 @@
 import OurExperience from "../../components/OurExperience";
+import Title from "../../components/Title";
 import VolunteerNeedNow from "../../components/VolunteerNeedNow";
 import WhatWeDo from "../../components/WhatWeDo";
 import Banner from "./Banner/Banner";
@@ -6,6 +7,7 @@ import Banner from "./Banner/Banner";
 const Home = () => {
   return (
     <div className="container">
+      <Title title={"Home"} />
       <div>
         <Banner />
       </div>
