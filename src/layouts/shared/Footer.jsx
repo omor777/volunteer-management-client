@@ -8,13 +8,8 @@ const Footer = () => {
           <div className="mb-6 md:mb-0 col-span-2">
             <div className="">
               <div className="flex items-center">
-                <img
-                  src="https://i.ibb.co/b3Zt8cZ/1j-oj-FVGOMk-X9-W-re-Be4h-Gf637-TVt0-QNx1m-Zw-WJp-Zy-YVr-Fthk-SEkj-Vv8-Qtak-RU7-FEd3-UFIf8crz-Xoi-EM.png"
-                  className="h-8 mr-3 w-8 rounded-full"
-                  alt="FlowBite Logo"
-                />
                 <span className="self-center text-2xl font-semibold whitespace-nowrap text-white">
-                  CareCrowd
+                  <span className="bg-gradient-to-tr from-pink-500 to-purple-500 bg-clip-text text-transparent">Care</span>Crowd
                 </span>
               </div>
               <p className="text-gray-300 dark:text-gray-400 mt-4 max-w-[280px]">

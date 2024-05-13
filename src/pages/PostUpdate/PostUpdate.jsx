@@ -13,7 +13,6 @@ const PostUpdate = () => {
   const { id } = useParams();
   const axiosCommon = useAxiosCommon();
 
-
   const { register, handleSubmit } = useForm({
     defaultValues: async () => {
       try {
@@ -33,8 +32,6 @@ const PostUpdate = () => {
   });
 
   const navigate = useNavigate();
-
-
 
   const handleUpdatePost = async (data) => {
     const updateVolunteer = {
@@ -61,7 +58,7 @@ const PostUpdate = () => {
   };
 
   return (
-    <section className="bg-white dark:bg-gray-800 px-4 lg:px-0 ">
+    <section className="bg-white dark:bg-gray-800  lg:px-0 ">
       <Title title={"Update Volunteer Post"} />
       <div className="max-w-4xl px-4 pt-8 pb-4 md:p-8 mx-auto  border border-slate-300 rounded-md">
         <h1 className="mb-8 text-[clamp(30px,5vw,48px)] font-extrabold text-gray-900 dark:text-white   text-center capitalize">

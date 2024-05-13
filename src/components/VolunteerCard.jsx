@@ -14,7 +14,7 @@ const VolunteerCard = ({ volunteer }) => {
           className="rounded-t-lg w-full object-cover h-[260px] text-gray-400"
           src={thumbnail}
           alt="Not found!"
-        />
+      />
       </figure>
 
       <div className="p-5 flex flex-col justify-between h-[310px]">

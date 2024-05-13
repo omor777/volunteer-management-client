@@ -79,14 +79,12 @@ const Navbar = () => {
             to="/"
             className="flex items-center space-x-3 rtl:space-x-reverse"
           >
-            {/* <img
-              src="https://flowbite.com/docs/images/logo.svg"
-              className="h-8"
-              alt="Flowbite Logo"
-            /> */}
-            <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
-              CareCrowd
-            </span>
+            <p className="self-center text-2xl font-bold whitespace-nowrap dark:text-white">
+              <span className="bg-gradient-to-tr from-pink-500 to-purple-500 bg-clip-text text-transparent">
+                Care
+              </span>
+              Crowd
+            </p>
           </Link>
           <div className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
             <button className="mr-4" onClick={handleTheme}>

@@ -56,9 +56,9 @@ const NeedVolunteer = () => {
     e.target.reset();
   };
 
-  const handleReset = () => {
-    setSearch("");
-  };
+  // const handleReset = () => {
+  //   setSearch("");
+  // };
 
   const handlePagination = (p) => {
     setCurrentPage(p);
@@ -136,7 +136,7 @@ const NeedVolunteer = () => {
 
         <button onClick={() => setLayout((prevLayout) => !prevLayout)}>
           {layout ? (
-             <TfiLayoutGrid3Alt className="text-2xl dark:text-gray-300" />
+            <TfiLayoutGrid3Alt className="text-2xl dark:text-gray-300" />
           ) : (
             <HiBars4 className="text-3xl dark:text-gray-300" />
           )}
