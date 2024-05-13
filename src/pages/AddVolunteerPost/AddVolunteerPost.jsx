@@ -4,47 +4,35 @@ import useAuth from "../../hooks/useAuth";
 
 import "react-datepicker/dist/react-datepicker.css";
 
+import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
+import Title from "../../components/Title";
 import useAxiosCommon from "../../hooks/useAxiosCommon";
 import "./style.css";
-import Title from "../../components/Title";
 
 const AddVolunteerPost = () => {
   const [startDate, setStartDate] = useState(new Date());
   const axiosCommon = useAxiosCommon();
   const { user } = useAuth();
 
-  const handleAddPost = async (e) => {
-    e.preventDefault();
-    const form = e.target;
-    const name = form.name.value;
-    const email = form.email.value;
-    const title = form.title.value;
-    const description = form.description.value;
-    const category = form.category.value;
-    const location = form.location.value;
-    const volunteer = form.volunteer.value;
-    const deadline = startDate;
-    const thumbnail = form.thumbnail.value;
+  const { register, handleSubmit } = useForm({
+    defaultValues: {
+      name: user?.displayName,
+      email: user?.email,
+    },
+  });
 
+  const handleAddPost = async (data) => {
     const volunteerData = {
-      name,
-      email,
-      title,
-      description,
-      category,
-      location,
-      volunteer: parseInt(volunteer),
-      deadline,
-      thumbnail,
+      ...data,
+      deadline: startDate,
     };
 
-    // console.log(volunteerData);
+    // console.table(volunteerData);
 
     try {
       const { data } = await axiosCommon.post("/add-volunteer", volunteerData);
 
-      // console.log(data)
       if (data.insertedId) {
         toast.success("Your post added!");
       }
@@ -53,93 +41,91 @@ const AddVolunteerPost = () => {
     }
   };
   return (
-    <section className="mt-32 container ">
-      <Title title={'Add Volunteer Post'}/>
-      <div className=" p-6 mx-auto bg-white rounded-md shadow-md dark:bg-gray-800 max-w-5xl border border-neutral-100">
-        <h2 className="text-lg font-semibold text-gray-700 text-center mb-10 mt-3 uppercase dark:text-white">
-          add volunteer
-        </h2>
-        <form onSubmit={handleAddPost}>
-          <div className="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
-            <div>
+    <section className="bg-white dark:bg-gray-800 px-4 lg:px-0 ">
+      <Title title={"Update Volunteer Post"} />
+      <div className="max-w-4xl px-4 pt-8 pb-4 md:p-8 mx-auto  border border-slate-300 rounded-md">
+        <h1 className="mb-8 text-[clamp(30px,5vw,48px)] font-extrabold text-gray-900 dark:text-white   text-center capitalize">
+          <span className="text-transparent bg-clip-text bg-gradient-to-r to-purple-600 from-pink-400">
+            Add
+          </span>{" "}
+          Post
+        </h1>
+
+        <form onSubmit={handleSubmit(handleAddPost)} noValidate>
+          <div className="grid gap-4 mb-4 sm:grid-cols-2 sm:gap-6 sm:mb-5">
+            <div className="w-full">
               <label
-                className="text-gray-700 dark:text-gray-200"
                 htmlFor="name"
+                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
               >
                 Name
               </label>
               <input
-                id="name"
                 type="text"
-                name="name"
-                placeholder="Name"
-                defaultValue={user?.displayName}
+                id="name"
                 readOnly
-                className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
+                {...register("name")}
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-600 focus:border-purple-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500"
+                placeholder="name"
               />
             </div>
-            <div>
+            <div className="w-full">
               <label
-                className="text-gray-700 dark:text-gray-200"
                 htmlFor="email"
+                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
               >
                 Email
               </label>
               <input
-                id="email"
                 type="email"
-                name="email"
-                placeholder="@Email"
-                defaultValue={user?.email}
+                id="email"
                 readOnly
-                className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
+                {...register("email")}
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-600 focus:border-purple-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500"
+                placeholder="@email"
               />
             </div>
-            <div>
+            <div className="w-full">
               <label
-                className="text-gray-700 dark:text-gray-200"
                 htmlFor="title"
+                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
               >
-                Tittle
+                Title
               </label>
               <input
-                id="title"
+                {...register("title")}
                 type="text"
-                name="title"
-                placeholder="tittle"
-                className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
+                id="title"
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-600 focus:border-purple-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500"
+                placeholder="title"
               />
             </div>
-            <div>
+            <div className="w-full">
               <label
-                className="text-gray-700 dark:text-gray-200"
                 htmlFor="description"
+                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
               >
                 Description
               </label>
               <input
-                id="description"
+                {...register("description")}
                 type="text"
-                name="description"
+                id="description"
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-600 focus:border-purple-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500"
                 placeholder="description"
-                className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
               />
             </div>
             <div>
               <label
-                className="text-gray-700 dark:text-gray-200"
                 htmlFor="category"
+                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
               >
                 Category
               </label>
-
               <select
-                name="category"
-                className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
+                {...register("category")}
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-600 focus:border-purple-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500"
               >
-                <option value="option2" disabled>
-                  Choose a category
-                </option>
                 <option value="Healthcare">Healthcare</option>
                 <option value="Education">Education</option>
                 <option value="Social-Service">Social Service</option>
@@ -148,72 +134,70 @@ const AddVolunteerPost = () => {
             </div>
             <div>
               <label
-                className="text-gray-700 dark:text-gray-200"
                 htmlFor="location"
+                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
               >
                 Location
               </label>
               <input
-                id="location"
+                {...register("location")}
                 type="text"
-                name="location"
+                id="location"
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-600 focus:border-purple-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500"
                 placeholder="location"
-                className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
               />
             </div>
-            <div>
+            <div className="w-full">
               <label
-                className="text-gray-700 dark:text-gray-200"
                 htmlFor="volunteer"
+                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
               >
                 No. Of Volunteer
               </label>
               <input
-                id="volunteer"
+                {...register("volunteer", { valueAsNumber: true })}
                 type="number"
-                name="volunteer"
+                id="volunteer"
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-600 focus:border-purple-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500"
                 placeholder="No of volunteer needed"
-                className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
               />
             </div>
-            <div>
+            <div className="w-full">
               <label
-                className="text-gray-700 dark:text-gray-200 block"
-                htmlFor="deadline"
+                htmlFor="volunteer"
+                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
               >
                 Deadline
               </label>
               <DatePicker
-                className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring "
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-600 focus:border-purple-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500"
                 showIcon
                 selected={startDate}
                 onChange={(date) => setStartDate(date)}
               />
             </div>
           </div>
-
-          <div className="mt-6">
+          <div className="w-full">
             <label
-              className="text-gray-700 dark:text-gray-200"
               htmlFor="thumbnail"
+              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
             >
               Thumbnail
             </label>
             <input
-              id="thumbnail"
               type="url"
-              name="thumbnail"
+              id="thumbnail"
+              {...register("thumbnail")}
+              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-600 focus:border-purple-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500"
               placeholder="thumbnail"
-              className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
             />
           </div>
-
-          <div className="flex justify-end mt-6">
+          <div className="pt-8">
             <button
-              className="text-white hidden md:block bg-primary hover:bg-primary-dark focus:ring-4 focus:outline-none 
-                 focus:ring-primary-light font-medium rounded-lg text-sm px-4 py-2.5 text-center dark:bg-violet-600 dark:hover:bg-bg-primary-dark dark:focus:ring-blue-800 uppercase w-full duration-300"
+              type="submit"
+              className="text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 font-medium rounded-lg  px-5 py-2.5 text-center  mb-2 w-full uppercase text-sm transition-colors duration-300"
             >
-              add
+              add post
             </button>
           </div>
         </form>

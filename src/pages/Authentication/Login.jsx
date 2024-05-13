@@ -1,9 +1,9 @@
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import Title from "../../components/Title";
 import useAuth from "../../hooks/useAuth";
 import { useAxiosSecure } from "../../hooks/useAxiosSecure";
-import Title from "../../components/Title";
 
 const Login = () => {
   const { loginUser, googleLogin, githubLogin } = useAuth();
@@ -27,7 +27,8 @@ const Login = () => {
         email: user.email,
       });
     } catch (error) {
-      console.error(error);
+      toast.error("Invalid credential!");
+      console.log(error);
     }
   };
 
@@ -41,7 +42,7 @@ const Login = () => {
         email: user.email,
       });
     } catch (error) {
-      console.error(error);
+      console.log(error);
     }
   };
 
@@ -56,12 +57,12 @@ const Login = () => {
         email: user.email,
       });
     } catch (error) {
-      console.error(error);
+      console.log(error);
     }
   };
   return (
     <div className="mt-20">
-      <Title title={'Login'}/>
+      <Title title={"Login"} />
       <div className="flex w-full max-w-2xl mx-auto overflow-hidden bg-white rounded-md shadow-md  lg:max-w-4xl border border-gray-50 ">
         <div
           className="hidden bg-cover bg-center lg:block lg:w-1/2"

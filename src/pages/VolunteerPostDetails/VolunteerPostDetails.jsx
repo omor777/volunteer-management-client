@@ -19,7 +19,7 @@ const VolunteerPostDetails = () => {
     },
   });
   const {
-    _id,
+  _id,
     title,
     thumbnail,
     description,
@@ -60,7 +60,7 @@ const VolunteerPostDetails = () => {
             </p>
             <p className="dark:text-gray-300 text-gray-700 capitalize flex items-center gap-2">
               <span className="text-lg font-medium ">volunteer needed:</span>{" "}
-              <span className="bg-pink-100/60 text-pink-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-pink-900 dark:text-pink-300">
+              <span className="bg-pink-100/60 text-pink-800 text-sm font-bold px-2.5 py-0.5 rounded-full dark:bg-pink-900 dark:text-pink-300">
                 {volunteer}
               </span>
             </p>

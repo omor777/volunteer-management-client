@@ -77,7 +77,7 @@ const MyPost = () => {
   }
   return (
     <div>
-      {!volunteers.length > 0 ? (
+      {!volunteers?.length > 0 ? (
         <section className="bg-white dark:bg-gray-800  flex items-center justify-center ">
           <div className="flex items-center     mx-auto">
             <div className="flex flex-col items-center max-w-md mx-auto text-center">

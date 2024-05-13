@@ -1,78 +1,52 @@
-import { useQuery } from "@tanstack/react-query";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { useNavigate, useParams } from "react-router-dom";
+import Title from "../../components/Title";
 import useAxiosCommon from "../../hooks/useAxiosCommon";
 import "./style.css";
-import Title from "../../components/Title";
 
 const PostUpdate = () => {
   const [startDate, setStartDate] = useState(new Date());
   const { id } = useParams();
   const axiosCommon = useAxiosCommon();
-  const { data } = useQuery({
-    queryKey: ["post-update"],
-    queryFn: async () => {
+
+
+  const { register, handleSubmit } = useForm({
+    defaultValues: async () => {
       try {
         const { data } = await axiosCommon.get(`volunteers/s/${id}`);
-        return data;
+
+        setStartDate(data.deadline);
+
+        delete data.deadline;
+        delete data._id;
+        return {
+          ...data,
+        };
       } catch (error) {
-        console.error(error);
+        console.log(error);
       }
     },
   });
 
   const navigate = useNavigate();
 
-  const {
-    _id,
-    name,
-    email,
-    title,
-    description,
-    category,
-    location,
-    volunteer,
-    deadline,
-    thumbnail,
-  } = data || {};
 
-  useEffect(() => {
-    setStartDate(deadline);
-  }, [deadline]);
 
-  const handleUpdatePost = async (e) => {
-    e.preventDefault();
-    const form = e.target;
-    const name = form.name.value;
-    const email = form.email.value;
-    const title = form.title.value;
-    const description = form.description.value;
-    const category = form.category.value;
-    const location = form.location.value;
-    const volunteer = form.volunteer.value;
-    const deadline = startDate;
-    const thumbnail = form.thumbnail.value;
-
+  const handleUpdatePost = async (data) => {
     const updateVolunteer = {
-      name,
-      email,
-      title,
-      description,
-      category,
-      location,
-      volunteer: parseInt(volunteer),
-      deadline,
-      thumbnail,
+      ...data,
+      deadline: startDate,
     };
 
-    // console.log(updateVolunteer);
+    console.table(updateVolunteer);
 
     try {
       const { data } = await axiosCommon.put(
-        `/volunteers/${_id}`,
+        `/volunteers/${id}`,
         updateVolunteer
       );
 
@@ -88,7 +62,7 @@ const PostUpdate = () => {
 
   return (
     <section className="bg-white dark:bg-gray-800 px-4 lg:px-0 ">
-      <Title title={'Update Volunteer Post'}/>
+      <Title title={"Update Volunteer Post"} />
       <div className="max-w-4xl px-4 pt-8 pb-4 md:p-8 mx-auto  border border-slate-300 rounded-md">
         <h1 className="mb-8 text-[clamp(30px,5vw,48px)] font-extrabold text-gray-900 dark:text-white   text-center capitalize">
           <span className="text-transparent bg-clip-text bg-gradient-to-r to-purple-600 from-pink-400">
@@ -97,7 +71,7 @@ const PostUpdate = () => {
           Post
         </h1>
 
-        <form onSubmit={handleUpdatePost}>
+        <form onSubmit={handleSubmit(handleUpdatePost)} noValidate>
           <div className="grid gap-4 mb-4 sm:grid-cols-2 sm:gap-6 sm:mb-5">
             <div className="w-full">
               <label
@@ -108,10 +82,9 @@ const PostUpdate = () => {
               </label>
               <input
                 type="text"
-                name="name"
                 id="name"
                 readOnly
-                defaultValue={name}
+                {...register("name")}
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-600 focus:border-purple-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500"
                 placeholder="name"
               />
@@ -125,10 +98,9 @@ const PostUpdate = () => {
               </label>
               <input
                 type="email"
-                name="email"
                 id="email"
                 readOnly
-                defaultValue={email}
+                {...register("email")}
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-600 focus:border-purple-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500"
                 placeholder="@email"
               />
@@ -141,10 +113,9 @@ const PostUpdate = () => {
                 Title
               </label>
               <input
+                {...register("title")}
                 type="text"
-                name="title"
                 id="title"
-                defaultValue={title}
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-600 focus:border-purple-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500"
                 placeholder="title"
               />
@@ -157,10 +128,9 @@ const PostUpdate = () => {
                 Description
               </label>
               <input
+                {...register("description")}
                 type="text"
-                name="description"
                 id="description"
-                defaultValue={description}
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-600 focus:border-purple-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500"
                 placeholder="description"
               />
@@ -173,8 +143,7 @@ const PostUpdate = () => {
                 Category
               </label>
               <select
-                defaultValue={category}
-                name="category"
+                {...register("category")}
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-600 focus:border-purple-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500"
               >
                 <option value="Healthcare">Healthcare</option>
@@ -191,10 +160,9 @@ const PostUpdate = () => {
                 Location
               </label>
               <input
+                {...register("location")}
                 type="text"
-                name="location"
                 id="location"
-                defaultValue={location}
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-600 focus:border-purple-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500"
                 placeholder="location"
               />
@@ -207,10 +175,9 @@ const PostUpdate = () => {
                 No. Of Volunteer
               </label>
               <input
+                {...register("volunteer", { valueAsNumber: true })}
                 type="number"
-                name="volunteer"
                 id="volunteer"
-                defaultValue={volunteer}
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-600 focus:border-purple-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500"
                 placeholder="No of volunteer needed"
               />
@@ -239,9 +206,8 @@ const PostUpdate = () => {
             </label>
             <input
               type="url"
-              name="thumbnail"
               id="thumbnail"
-              defaultValue={thumbnail}
+              {...register("thumbnail")}
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-600 focus:border-purple-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500"
               placeholder="thumbnail"
             />

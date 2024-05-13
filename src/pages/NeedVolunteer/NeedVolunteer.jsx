@@ -1,24 +1,20 @@
 import { useEffect, useState } from "react";
 import { BsTable } from "react-icons/bs";
 import { TfiLayoutGrid3Alt } from "react-icons/tfi";
+import Title from "../../components/Title";
 import VolunteerCard from "../../components/VolunteerCard";
 import useAxiosCommon from "../../hooks/useAxiosCommon";
 import TableLayout from "./TableLayout";
-import Title from "../../components/Title";
 
 const NeedVolunteer = () => {
   const axiosCommon = useAxiosCommon();
   const [search, setSearch] = useState("");
   const [layout, setLayout] = useState(false);
-  const [itemsPerPage, setItemsPerPage] = useState(2);
+  const [itemsPerPage, setItemsPerPage] = useState(6);
   const [currentPage, setCurrentPage] = useState(1);
   const [volunteers, setVolunteers] = useState([]);
   const [isPending, setIsPending] = useState(true);
   const [count, setCount] = useState(null);
-  // const { data: volunteers, isPending } = useQuery({
-  //   queryKey: ["volunteers", search, currentPage],
-  //   queryFn: async () => {},
-  // });
 
   useEffect(() => {
     const getData = async () => {
@@ -75,14 +71,14 @@ const NeedVolunteer = () => {
   };
 
   const handleNextButton = () => {
-    if (currentPage < pages.length ) {
+    if (currentPage < pages.length) {
       setCurrentPage(currentPage + 1);
     }
   };
 
   return (
     <div className="container">
-      <Title title={'Need Volunteer Post'}/>
+      <Title title={"Need Volunteer Post"} />
       <div>
         <h1 className=" text-[clamp(26px,4vw,42px)] font-extrabold text-gray-900 dark:text-white   text-center capitalize max-w-3xl mx-auto">
           <span className="text-transparent bg-clip-text bg-gradient-to-r to-purple-600 from-pink-400">

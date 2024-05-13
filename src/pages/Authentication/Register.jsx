@@ -1,13 +1,14 @@
 import { updateProfile } from "firebase/auth";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import Title from "../../components/Title";
 import useAuth from "../../hooks/useAuth";
 import { setDataToLs } from "../../utils/localStorage";
-import Title from "../../components/Title";
 
 const Register = () => {
   const { user, setUser, createUser } = useAuth();
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -36,13 +37,14 @@ const Register = () => {
       setUser({ ...user, displayName: name, photoURL: photoUrl });
 
       toast.success("Registration successful!");
+      navigate("/");
     } catch (error) {
       console.error(error);
     }
   };
   return (
     <div className="mt-20">
-      <Title title={'Register'}/>
+      <Title title={"Register"} />
       <div className="flex w-full max-w-2xl mx-auto overflow-hidden bg-white rounded-md shadow-md  lg:max-w-4xl border border-gray-50">
         <div
           className="hidden bg-cover bg-center lg:block lg:w-1/2"

@@ -22,9 +22,9 @@ const VolunteerNeedNow = () => {
       <div>
         <h1 className=" text-[clamp(26px,4vw,42px)] font-extrabold text-gray-900 dark:text-white   text-center capitalize max-w-3xl mx-auto">
           <span className="text-transparent bg-clip-text bg-gradient-to-r to-purple-600 from-pink-400">
-            Volunteer
+            Instant
           </span>{" "}
-          with Us Today
+          Impact Initiatives
         </h1>
         <p className="text-center mt-3 max-w-2xl mx-auto text-gray-800 dark:text-gray-400">
           Be the change you wish to see in the world! Our Volunteers Needed Now
