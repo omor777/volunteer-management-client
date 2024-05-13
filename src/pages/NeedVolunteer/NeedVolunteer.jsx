@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { BsTable } from "react-icons/bs";
+import { HiBars4 } from "react-icons/hi2";
 import { TfiLayoutGrid3Alt } from "react-icons/tfi";
 import Title from "../../components/Title";
 import VolunteerCard from "../../components/VolunteerCard";
@@ -136,9 +136,9 @@ const NeedVolunteer = () => {
 
         <button onClick={() => setLayout((prevLayout) => !prevLayout)}>
           {layout ? (
-            <BsTable className="text-2xl dark:text-gray-300" />
+             <TfiLayoutGrid3Alt className="text-2xl dark:text-gray-300" />
           ) : (
-            <TfiLayoutGrid3Alt className="text-2xl dark:text-gray-300" />
+            <HiBars4 className="text-3xl dark:text-gray-300" />
           )}
         </button>
       </div>

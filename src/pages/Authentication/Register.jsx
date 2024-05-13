@@ -43,50 +43,51 @@ const Register = () => {
     }
   };
   return (
-    <div className="mt-20">
+    <div>
       <Title title={"Register"} />
-      <div className="flex w-full max-w-2xl mx-auto overflow-hidden bg-white rounded-md shadow-md  lg:max-w-4xl border border-gray-50">
+      <div className="flex w-full max-w-2xl mx-auto overflow-hidden bg-white rounded-md shadow-md  lg:max-w-6xl border border-gray-50 ">
         <div
-          className="hidden bg-cover bg-center lg:block lg:w-1/2"
+          className="hidden bg-cover bg-center lg:block lg:w-1/2 order-1
+          "
           style={{
-            backgroundImage: `url('https://images.unsplash.com/photo-1606660265514-358ebbadc80d?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1575&q=80')`,
+            backgroundImage: `url('https://i.ibb.co/6yGNmZs/2126914.jpg')`,
           }}
         ></div>
 
-        <div className="w-full px-6 py-8 md:px-8 lg:w-1/2">
-          <p
-            style={{ fontSize: "25px" }}
-            className="mt-3 text-center text-gray-600 mb-8 capitalize font-bold"
-          >
-            Register Now
-          </p>
+        <div className="w-full px-6 py-8 md:px-8 lg:w-1/2 dark:bg-gray-800">
+          <h1 className="mb-8 text-[clamp(30px,5vw,42px)] font-extrabold text-gray-900 dark:text-white   text-center capitalize">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r to-purple-600 from-pink-400">
+              Register
+            </span>{" "}
+            Now
+          </h1>
           <form onSubmit={handleSubmit(onSubmit)} noValidate>
-            <div className="mt-4">
+            <div>
               <label
-                className="block mb-2 text-sm font-medium text-gray-600 "
                 htmlFor="name"
+                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
               >
                 Name
               </label>
               <input
-                id="name"
-                autoComplete="name"
-                className="block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg    focus:border-blue-400 focus:ring-opacity-40  focus:outline-none focus:ring focus:ring-blue-300"
-                type="text"
                 {...register("name", {
                   required: "Name is required!",
                 })}
-                placeholder="Name"
+                type="text"
+                id="name"
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-600 focus:border-purple-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500"
+                placeholder="Enter name"
               />
               {errors && (
-                <small className="text-error ml-1">
+                <small className="text-red-500 ml-1">
                   {errors?.name?.message}
                 </small>
               )}
             </div>
+
             <div className="mt-4">
               <label
-                className="block mb-2 text-sm font-medium text-gray-600 "
+                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white "
                 htmlFor="email"
               >
                 Email
@@ -94,20 +95,20 @@ const Register = () => {
               <input
                 id="email"
                 autoComplete="email"
-                className="block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg    focus:border-blue-400 focus:ring-opacity-40  focus:outline-none focus:ring focus:ring-blue-300"
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-600 focus:border-purple-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500"
                 type="email"
                 {...register("email", { required: "Email is required!" })}
-                placeholder="@Email"
+                placeholder="Enter email"
               />
               {errors && (
-                <small className="text-error ml-1">
+                <small className="text-red-500 ml-1">
                   {errors?.email?.message}
                 </small>
               )}
             </div>
             <div className="mt-4">
               <label
-                className="block mb-2 text-sm font-medium text-gray-600 "
+                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                 htmlFor="photoUrl"
               >
                 PhotoUrl
@@ -116,7 +117,7 @@ const Register = () => {
                 id="photoUrl"
                 placeholder="photo url"
                 autoComplete="photoUlr"
-                className="block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg    focus:border-blue-400 focus:ring-opacity-40  focus:outline-none focus:ring focus:ring-blue-300"
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-600 focus:border-purple-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500"
                 type="url"
                 {...register("photoUrl")}
               />
@@ -126,7 +127,7 @@ const Register = () => {
             <div className="mt-4">
               <div className="flex justify-between">
                 <label
-                  className="block mb-2 text-sm font-medium text-gray-600 "
+                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                   htmlFor="password"
                 >
                   Password
@@ -137,7 +138,7 @@ const Register = () => {
                 id="password"
                 placeholder="Password"
                 autoComplete="current-password"
-                className="block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg    focus:border-blue-400 focus:ring-opacity-40  focus:outline-none focus:ring focus:ring-blue-300"
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-600 focus:border-purple-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500"
                 type="password"
                 {...register("password", {
                   validate: {
@@ -162,7 +163,7 @@ const Register = () => {
                 })}
               />
               {errors && (
-                <small className="text-error ml-1">
+                <small className="text-red-500 ml-1">
                   {errors?.password?.message}
                 </small>
               )}
@@ -170,7 +171,7 @@ const Register = () => {
             <div className="mt-6 ">
               <button
                 type="submit"
-                className="w-full px-6 py-3 text-sm font-medium tracking-wide text-white  transition-colors duration-300 transform bg-primary rounded-lg hover:bg-primary-dark focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-50 uppercase"
+                className="text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 font-medium rounded-lg  px-5 py-2.5 text-center  mb-2 w-full uppercase text-sm transition-colors duration-300 "
               >
                 register
               </button>
@@ -182,7 +183,7 @@ const Register = () => {
 
             <Link
               to="/login"
-              className="text-xs text-gray-500 uppercase  hover:underline"
+              className="text-xs dark:text-gray-300 uppercase  hover:underline"
             >
               or login
             </Link>
