@@ -23,6 +23,10 @@ const AddVolunteerPost = () => {
   });
 
   const handleAddPost = async (data) => {
+    if (startDate.getTime() < new Date().getTime()) {
+      return toast.error("Date must be bigger than todays date! ");
+    }
+
     const volunteerData = {
       ...data,
       deadline: startDate,
