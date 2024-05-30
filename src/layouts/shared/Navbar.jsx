@@ -111,15 +111,14 @@ const Navbar = () => {
                 <div className="flex items-center gap-5">
                   {user ? (
                     <figure className="relative">
-                      <img
-                        referrerPolicy="no-referrer"
-                        className="w-10 h-10 rounded-full peer cursor-pointer ring-2 ring-gray-300 dark:ring-gray-500"
-                        src={user?.photoURL}
-                        alt="Rounded avatar"
-                      />
-                      <span className="peer-hover:visible absolute z-10  inline-block top-10 invisible -right-8 peer  py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-1 tooltip dark:bg-gray-700 w-28 text-center">
-                        {user?.displayName}
-                      </span>
+                      <Link to={"/profile"}>
+                        <img
+                          referrerPolicy="no-referrer"
+                          className="w-10 h-10 rounded-full peer cursor-pointer ring-2 ring-gray-300 dark:ring-gray-500"
+                          src={user?.photoURL}
+                          alt="Rounded avatar"
+                        />
+                      </Link>
                     </figure>
                   ) : (
                     <div className="relative w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">

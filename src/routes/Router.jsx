@@ -1,4 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
+import Profile from "../components/Profile";
 import Root from "../layouts/Root";
 import AddVolunteerPost from "../pages/AddVolunteerPost/AddVolunteerPost";
 import Login from "../pages/Authentication/Login";
@@ -37,6 +38,10 @@ export const router = createBrowserRouter([
             <AddVolunteerPost />
           </PrivateRoute>
         ),
+      },
+      {
+        path: "/profile",
+        element: <Profile />,
       },
       {
         path: "/be-a-volunteer/:id",
