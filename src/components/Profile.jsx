@@ -21,8 +21,10 @@ const Profile = () => {
       await updateUserProfile(user?.displayName, image);
       setReload(!reload);
       setIsImageSelect(false);
+      toast.success("Image is updated!");
     } catch (error) {
       console.log(error);
+      toast.error(error.message);
     }
   };
 
@@ -32,7 +34,9 @@ const Profile = () => {
     try {
       await updateUserProfile(name, user?.photoURL);
       setIsNameEdit(false);
+      toast.success("Name is updated");
     } catch (error) {
+      toast.error(error.message);
       console.log(error);
     }
   };
@@ -56,6 +60,7 @@ const Profile = () => {
         // console.log(image_url);
       }
     } catch (error) {
+      toast.error(error.message);
       console.log(error);
     }
   };
@@ -133,7 +138,7 @@ const Profile = () => {
                       type="text"
                     />
                     <button className="absolute right-3 top-2">
-                      <MdSave className="text-2xl" />
+                      <MdSave className="text-2xl dark:text-gray-200" />
                     </button>
                   </div>
                 </form>
